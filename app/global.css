@@ -148,3 +148,7 @@ table {
 .title {
   text-wrap: balance;
 }
+
+.active {
+  @apply text-white;
+}

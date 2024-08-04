@@ -1,32 +1,37 @@
+'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 
 const navItems = {
   '/': {
-    name: 'home',
+    name: 'Work',
   },
   '/blog': {
-    name: 'blog',
+    name: 'About',
   },
   'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: 'deploy',
+    name: 'Lab',
   },
 }
 
 export function Navbar() {
+  const pathname = usePathname();
+  const isActive = (path) => path === pathname;
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
+    <aside className="-ml-[8px] mb-16">
       <div className="lg:sticky lg:top-20">
         <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          className="flex flex-col items-center relative fade md:overflow-auto scroll-pr-6 md:relative bg-red-200"
           id="nav"
         >
-          <div className="flex flex-row space-x-0 pr-10">
+          <div className="space-x-4 bg-black/85 dark:bg-neutral-700/40 rounded-full h-8 px-4 flex items-center fixed backdrop-blur-md	border-0.5 border-white/15 shadow-lg shadow-black/20">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  className={`${isActive(path) ? 'active' : ''} transition-all text-sm text-neutral-400 dark:text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-40 align-middle`}
                 >
                   {name}
                 </Link>
