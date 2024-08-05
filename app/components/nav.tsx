@@ -7,7 +7,7 @@ const navItems = {
   '/': {
     name: 'Work',
   },
-  '/blog': {
+  '/about': {
     name: 'About',
   },
   'https://vercel.com/templates/next.js/portfolio-starter-kit': {
@@ -19,10 +19,10 @@ export function Navbar() {
   const pathname = usePathname();
   const isActive = (path) => path === pathname;
   return (
-    <aside className="-ml-[8px] mb-16">
-      <div className="lg:sticky lg:top-20">
+    <aside className="-ml-[8px] mb-24">
+      <div className="lg:sticky lg:top-20 z-50">
         <nav
-          className="flex flex-col items-center relative fade md:overflow-auto scroll-pr-6 md:relative bg-red-200"
+          className="flex flex-col items-center relative fade md:overflow-auto scroll-pr-6 md:relative "
           id="nav"
         >
           <div className="space-x-4 bg-black/85 dark:bg-neutral-700/40 rounded-full h-8 px-4 flex items-center fixed backdrop-blur-md	border-0.5 border-white/15 shadow-lg shadow-black/20">
@@ -31,7 +31,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className={`${isActive(path) ? 'active' : ''} transition-all text-sm text-neutral-400 dark:text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-40 align-middle`}
+                  className={`${isActive(path) ? 'active' : ''} transition-all duration-300	text-xs text-neutral-400 dark:text-neutral-400 hover:text-neutral-500 dark:hover:text-neutral-40 align-middle`}
                 >
                   {name}
                 </Link>

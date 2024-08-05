@@ -1,5 +1,10 @@
 import { BlogPosts } from 'app/components/posts'
 import { motion } from "framer-motion"; 
+import Image from 'next/image'
+import profilepic from '../public/profilepic.png'
+import Zoom from 'next-image-zoom';
+import ImageZoom from 'app/components/image-zoom'
+import Footer from 'app/components/footer'
 
 const fadeInAnimationVariants = {
   initial: {
@@ -15,14 +20,15 @@ const fadeInAnimationVariants = {
 export default function Page() {
   return (
     <section>
-      
-      <p className="mb-0.5">
+      <Image className="mb-6 rounded-full h-16 w-16"src={profilepic} alt="Picture of me"></Image>
+      <p className="text-sm	mb-0.5">
         Axel Bergqvist
       </p>
-      <p className="mb-6 text-neutral-500 dark:text-neutral-400">
+      <ImageZoom></ImageZoom>
+      <p className="text-sm	mb-6 text-neutral-500 dark:text-neutral-400">
         Stockholm, Sweden
       </p> 
-      <h1 className="mb-32">
+      <h1 className=" text-sm	mb-32">
         {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.
         `}
       </h1>
