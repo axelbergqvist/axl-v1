@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ')
+const cx = (...classes: string[]) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
   children,
@@ -47,12 +47,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-neutral-900',
+        'text-black bg-white dark:text-white dark:bg-neutral-900 overflow-visible',
         `${GeistSans.variable} ${GeistMono.variable}`
       )}
     >
-      <body className={` max-w-2xl mx-4 mt-6 lg:mx-auto ${GeistSans.className}`}>
-        <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0">
+      <body className={`max-w-2xl mx-4 mt-6 lg:mx-auto overflow-visible ${GeistSans.className}`}>
+        <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible">
           <Navbar />
           {children}
           <Footer />

@@ -9,6 +9,8 @@ interface ZoomProps {
     layout?: 'fixed' | 'intrinsic' | 'responsive' | 'fill';
     src: string;
     alt: string;
+    width?: number; // Add width and height as optional props
+    height?: number;
     [key: string]: any;
 }
 
@@ -19,6 +21,8 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         backgroundColor = "black", 
         animationDuration = 300,
         layout = 'fill',
+        width, // Destructure width and height
+        height,
         ...imageProps 
     } = props;
 
@@ -52,7 +56,8 @@ const Zoom: React.FC<ZoomProps> = (props) => {
             : (window.innerHeight * zoomPerc) / clientHeight;
 
         containerRef.current.style.transform = `translate(${wPrim - cL}px, ${hPrim - cT}px) scale(${scale})`;
-        window.document.addEventListener("scroll", closeWrapper, { once: true });
+
+        window.addEventListener("scroll", closeWrapper, { once: true });
         setClicked(true);
     };
 
@@ -68,7 +73,7 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         display: layout === "fixed" ? "inline-block" : "block",
         width: layout === "fixed" ? "max-content" : "100%",
         height: layout === "fixed" ? "max-content" : "100%",
-        zIndex: clicked ? 50 : 0,
+        zIndex: clicked ? 100 : 0,
         overflow: "hidden",
         backgroundColor: clicked ? "#fff" : "transparent",
         border: clicked ? "0.5px solid #e5e5e5" : "transparent",
@@ -80,16 +85,17 @@ const Zoom: React.FC<ZoomProps> = (props) => {
             {clicked && (
                 <div
                     style={{
-                        backgroundColor,
+                        backgroundColor: backgroundColor,
                         opacity: backgroundOpacity,
                         position: "fixed",
-                        zIndex: 40,
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
+                        zIndex: 100,
+                        top: -2000,
+                        left: -2000,
+                        width: "1000vw",
+                        height: "1000vh",
                         backdropFilter: "blur(20px)",
-                        WebkitBackdropFilter: "blur(20px)"
+                        WebkitBackdropFilter: "blur(20px)",
+                        pointerEvents: "none"
                     }}
                     onClick={closeWrapper}
                 />
@@ -99,7 +105,12 @@ const Zoom: React.FC<ZoomProps> = (props) => {
                 ref={containerRef}
                 onClick={handleImageZoom}
             >
-                <Image {...imageProps} />
+                <Image 
+                    layout={layout}
+                    width={width} // Pass width and height
+                    height={height}
+                    {...imageProps}
+                />
             </div>
         </>
     );
