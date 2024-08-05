@@ -4,7 +4,7 @@ import Zoom from './zoom'; // Adjust path as necessary
 
 export default function ImageZoom() {
     return (
-        <div className="relative flex justify-center items-center h-[500px] bg-white border border-neutral-200 rounded-lg">
+        <div className="relative flex justify-center items-center h-[500px] bg-white border border-neutral-200 rounded-lg z-50">
             <Zoom 
                 src="/worktest3.png" // Ensure the image path is correct
                 alt="Image zoom"

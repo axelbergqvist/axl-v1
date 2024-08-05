@@ -20,7 +20,7 @@ export function Navbar() {
   const isActive = (path) => path === pathname;
   return (
     <aside className="-ml-[8px] mb-24">
-      <div className="lg:sticky lg:top-20 z-50">
+      <div className="lg:sticky lg:top-20 z-40">
         <nav
           className="flex flex-col items-center relative fade md:overflow-auto scroll-pr-6 md:relative "
           id="nav"

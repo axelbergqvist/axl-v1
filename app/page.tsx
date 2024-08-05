@@ -2,7 +2,6 @@ import { BlogPosts } from 'app/components/posts'
 import Image from 'next/image'
 import profilepic from '../public/profilepic.png'
 import ImageZoom from 'app/components/image-zoom'
-import Footer from 'app/components/footer'
 
 export default function Page() {  
   return (
@@ -17,7 +16,6 @@ export default function Page() {
       <div className="my-8">
         <BlogPosts />
       </div>
-      <Footer />
     </section>
   )
 }

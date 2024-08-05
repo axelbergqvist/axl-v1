@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 
 interface ZoomProps {
@@ -17,8 +17,8 @@ interface ZoomProps {
 const Zoom: React.FC<ZoomProps> = (props) => {
     const { 
         zoomPercentage = 90, 
-        backgroundOpacity = 0.8, 
-        backgroundColor = "black", 
+        backgroundOpacity = 1, 
+        backgroundColor = "rgba(0, 0, 0, 0.2)", 
         animationDuration = 300,
         layout = 'fill',
         width, // Destructure width and height
@@ -39,26 +39,31 @@ const Zoom: React.FC<ZoomProps> = (props) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [clicked, setClicked] = useState(false);
 
-    const handleImageZoom = () => {
-        if (!containerRef.current || clicked) return;
+    const toggleZoom = () => {
+        if (!containerRef.current) return;
 
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const clientHeight = containerRect.height;
-        const clientWidth = containerRect.width;
-        const wPrim = (window.innerWidth - containerRect.width) / 2;
-        const hPrim = (window.innerHeight - containerRect.height) / 2;
-        const cL = containerRect.left;
-        const cT = containerRect.top;
-        const zoomPerc = zoomPercentage / 100;
+        if (clicked) {
+            // Zoom out
+            containerRef.current.style.transform = "scale(1)";
+            setClicked(false);
+        } else {
+            // Zoom in
+            const containerRect = containerRef.current.getBoundingClientRect();
+            const clientHeight = containerRect.height;
+            const clientWidth = containerRect.width;
+            const wPrim = (window.innerWidth - containerRect.width) / 2;
+            const hPrim = (window.innerHeight - containerRect.height) / 2;
+            const cL = containerRect.left;
+            const cT = containerRect.top;
+            const zoomPerc = zoomPercentage / 100;
 
-        const scale = ((window.innerHeight * zoomPerc) / clientHeight) * clientWidth >= window.innerWidth
-            ? (window.innerWidth * zoomPerc) / clientWidth
-            : (window.innerHeight * zoomPerc) / clientHeight;
+            const scale = ((window.innerHeight * zoomPerc) / clientHeight) * clientWidth >= window.innerWidth
+                ? (window.innerWidth * zoomPerc) / clientWidth
+                : (window.innerHeight * zoomPerc) / clientHeight;
 
-        containerRef.current.style.transform = `translate(${wPrim - cL}px, ${hPrim - cT}px) scale(${scale})`;
-
-        window.addEventListener("scroll", closeWrapper, { once: true });
-        setClicked(true);
+            containerRef.current.style.transform = `translate(${wPrim - cL}px, ${hPrim - cT}px) scale(${scale})`;
+            setClicked(true);
+        }
     };
 
     const closeWrapper = () => {
@@ -67,7 +72,36 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         setClicked(false);
     };
 
-    const styles: React.CSSProperties = {
+    const handleScroll = () => {
+        if (clicked) closeWrapper();
+    };
+
+    useEffect(() => {
+        // Add scroll event listener when zoom is active
+        if (clicked) {
+            window.addEventListener("scroll", handleScroll);
+        }
+        return () => {
+            // Clean up the event listener on unmount or when zoom is not active
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [clicked]);
+
+    const overlayStyle: React.CSSProperties = {
+        backgroundColor: backgroundColor,
+        opacity: backgroundOpacity,
+        position: "fixed",
+        zIndex: 100,
+        top: -2000,
+        left: -2000,
+        width: "1000vw",
+        height: "1000vh",
+        transition: `opacity ${animationDuration}ms ease, background-color ${animationDuration}ms ease`,
+        pointerEvents: clicked ? 'auto' : 'none', // Ensures clicks only go through when overlay is visible
+        cursor: clicked ? 'zoom-out' : 'auto', // Change cursor style based on state
+    };
+
+    const containerStyle: React.CSSProperties = {
         position: "relative",
         transition: `transform ${animationDuration}ms`,
         display: layout === "fixed" ? "inline-block" : "block",
@@ -77,33 +111,20 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         overflow: "hidden",
         backgroundColor: clicked ? "#fff" : "transparent",
         border: clicked ? "0.5px solid #e5e5e5" : "transparent",
-        borderRadius: clicked ? "4px" : "0"
+        borderRadius: clicked ? "4px" : "0",
+        cursor: clicked ? 'zoom-out' : 'zoom-in', // Change cursor style based on state
     };
 
     return (
         <>
-            {clicked && (
-                <div
-                    style={{
-                        backgroundColor: backgroundColor,
-                        opacity: backgroundOpacity,
-                        position: "fixed",
-                        zIndex: 100,
-                        top: -2000,
-                        left: -2000,
-                        width: "1000vw",
-                        height: "1000vh",
-                        backdropFilter: "blur(20px)",
-                        WebkitBackdropFilter: "blur(20px)",
-                        pointerEvents: "none"
-                    }}
-                    onClick={closeWrapper}
-                />
-            )}
             <div
-                style={styles}
+                style={{ ...overlayStyle, opacity: clicked ? backgroundOpacity : 0 }}
+                onClick={closeWrapper}
+            />
+            <div
+                style={containerStyle}
                 ref={containerRef}
-                onClick={handleImageZoom}
+                onClick={toggleZoom}
             >
                 <Image 
                     layout={layout}
