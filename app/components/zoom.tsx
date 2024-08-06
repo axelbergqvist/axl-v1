@@ -7,45 +7,73 @@ interface ZoomProps {
     backgroundColor?: string;
     animationDuration?: number;
     layout?: 'fixed' | 'intrinsic' | 'responsive' | 'fill';
-    src: string;
+    srcLight: string;
+    srcDark: string;
     alt: string;
-    width?: number; // Add width and height as optional props
+    width?: number;
     height?: number;
     [key: string]: any;
 }
 
 const Zoom: React.FC<ZoomProps> = (props) => {
     const { 
-        zoomPercentage = 90, 
+        zoomPercentage = 95, 
         backgroundOpacity = 1, 
         backgroundColor = "rgba(0, 0, 0, 0.2)", 
-        animationDuration = 300,
+        animationDuration = 200,
         layout = 'fill',
-        width, // Destructure width and height
+        width,
         height,
+        srcLight,
+        srcDark,
+        alt,
         ...imageProps 
     } = props;
 
-    if (zoomPercentage === undefined) {
-        throw new Error("Zoom percentage cannot be undefined!");
-    }
-    if (zoomPercentage < 1 || zoomPercentage > 100) {
-        throw new Error("Zoom percentage must be between 1 and 100");
-    }
-    if (backgroundOpacity < 0 || backgroundOpacity > 1) {
-        throw new Error("Background opacity must be between 0 and 1");
-    }
-
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const isZoomedIn = useRef(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const overlayRef = useRef<HTMLDivElement | null>(null);
     const [clicked, setClicked] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        setIsDarkMode(mediaQuery.matches);
+
+        const handleChange = (e: MediaQueryListEvent) => {
+            setIsDarkMode(e.matches);
+        };
+
+        mediaQuery.addEventListener('change', handleChange);
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                containerRef.current &&
+                !containerRef.current.contains(event.target as Node) &&
+                overlayRef.current &&
+                !overlayRef.current.contains(event.target as Node)
+            ) {
+                closeWrapper();
+            }
+        };
+
+        if (clicked) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [clicked]);
 
     const toggleZoom = () => {
         if (!containerRef.current) return;
 
         if (clicked) {
-            // Zoom out
-            containerRef.current.style.transform = "scale(1)";
-            setClicked(false);
+            closeWrapper();
         } else {
             // Zoom in
             const containerRect = containerRef.current.getBoundingClientRect();
@@ -61,44 +89,50 @@ const Zoom: React.FC<ZoomProps> = (props) => {
                 ? (window.innerWidth * zoomPerc) / clientWidth
                 : (window.innerHeight * zoomPerc) / clientHeight;
 
+            containerRef.current.style.transition = `transform ${animationDuration}ms`;
             containerRef.current.style.transform = `translate(${wPrim - cL}px, ${hPrim - cT}px) scale(${scale})`;
             setClicked(true);
+            isZoomedIn.current = true;
+            document.body.style.overflow = 'hidden'; // Disable scrolling
+
+            if (overlayRef.current) {
+                overlayRef.current.style.transition = `opacity ${animationDuration}ms ease-in-out`;
+                overlayRef.current.style.opacity = `${backgroundOpacity}`;
+            }
         }
     };
 
     const closeWrapper = () => {
-        if (!containerRef.current) return;
+        if (!containerRef.current || !overlayRef.current) return;
+
+        // Start zoom-out and fade-out
+        containerRef.current.style.transition = `transform ${animationDuration}ms`;
         containerRef.current.style.transform = "scale(1)";
-        setClicked(false);
-    };
 
-    const handleScroll = () => {
-        if (clicked) closeWrapper();
-    };
+        // Fade-out overlay opacity
+        overlayRef.current.style.transition = `opacity ${animationDuration}ms ease-in-out`;
+        overlayRef.current.style.opacity = '0';
 
-    useEffect(() => {
-        // Add scroll event listener when zoom is active
-        if (clicked) {
-            window.addEventListener("scroll", handleScroll);
-        }
-        return () => {
-            // Clean up the event listener on unmount or when zoom is not active
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [clicked]);
+        // Handle end of animation
+        overlayRef.current.addEventListener('transitionend', () => {
+            setClicked(false);
+            isZoomedIn.current = false;
+            document.body.style.overflow = ''; // Enable scrolling
+        }, { once: true });
+    };
 
     const overlayStyle: React.CSSProperties = {
         backgroundColor: backgroundColor,
-        opacity: backgroundOpacity,
+        opacity: clicked ? backgroundOpacity : 0,
         position: "fixed",
-        zIndex: 100,
-        top: -2000,
+        zIndex: 10,
+        top: -150,
         left: -2000,
         width: "1000vw",
-        height: "1000vh",
-        transition: `opacity ${animationDuration}ms ease, background-color ${animationDuration}ms ease`,
-        pointerEvents: clicked ? 'auto' : 'none', // Ensures clicks only go through when overlay is visible
-        cursor: clicked ? 'zoom-out' : 'auto', // Change cursor style based on state
+        height: "150vh",
+        transition: `opacity ${animationDuration}ms ease-in-out`,
+        pointerEvents: clicked ? 'auto' : 'none',
+        cursor: clicked ? 'zoom-out' : 'auto',
     };
 
     const containerStyle: React.CSSProperties = {
@@ -107,18 +141,23 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         display: layout === "fixed" ? "inline-block" : "block",
         width: layout === "fixed" ? "max-content" : "100%",
         height: layout === "fixed" ? "max-content" : "100%",
-        zIndex: clicked ? 100 : 0,
+        zIndex: clicked ? 20 : 0,
         overflow: "hidden",
-        backgroundColor: clicked ? "#fff" : "transparent",
-        border: clicked ? "0.5px solid #e5e5e5" : "transparent",
-        borderRadius: clicked ? "4px" : "0",
-        cursor: clicked ? 'zoom-out' : 'zoom-in', // Change cursor style based on state
+        backgroundColor: clicked 
+            ? (isDarkMode ? "#171717" : "#fff") 
+            : "transparent",
+        border: clicked 
+            ? `0.5px solid ${isDarkMode ? "#262626" : "#e5e5e5"}` 
+            : "transparent",
+        borderRadius: clicked ? "6px" : "0",
+        cursor: clicked ? 'zoom-out' : 'zoom-in',
     };
 
     return (
         <>
             <div
-                style={{ ...overlayStyle, opacity: clicked ? backgroundOpacity : 0 }}
+                style={overlayStyle}
+                ref={overlayRef}
                 onClick={closeWrapper}
             />
             <div
@@ -127,9 +166,11 @@ const Zoom: React.FC<ZoomProps> = (props) => {
                 onClick={toggleZoom}
             >
                 <Image 
+                    src={isDarkMode ? srcDark : srcLight}
                     layout={layout}
-                    width={width} // Pass width and height
+                    width={width}
                     height={height}
+                    alt={alt}
                     {...imageProps}
                 />
             </div>
