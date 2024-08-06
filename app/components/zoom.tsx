@@ -83,7 +83,7 @@ const Zoom: React.FC<ZoomProps> = (props) => {
             const hPrim = (window.innerHeight - containerRect.height) / 2;
             const cL = containerRect.left;
             const cT = containerRect.top;
-            const zoomPerc = zoomPercentage / 100;
+            const zoomPerc = zoomPercentage / 105;
 
             const scale = ((window.innerHeight * zoomPerc) / clientHeight) * clientWidth >= window.innerWidth
                 ? (window.innerWidth * zoomPerc) / clientWidth
@@ -126,10 +126,10 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         opacity: clicked ? backgroundOpacity : 0,
         position: "fixed",
         zIndex: 10,
-        top: -150,
-        left: -2000,
-        width: "1000vw",
-        height: "150vh",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
         transition: `opacity ${animationDuration}ms ease-in-out`,
         pointerEvents: clicked ? 'auto' : 'none',
         cursor: clicked ? 'zoom-out' : 'auto',
@@ -141,7 +141,7 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         display: layout === "fixed" ? "inline-block" : "block",
         width: layout === "fixed" ? "max-content" : "100%",
         height: layout === "fixed" ? "max-content" : "100%",
-        zIndex: clicked ? 20 : 0,
+        zIndex: clicked ? 10 : 100,
         overflow: "hidden",
         backgroundColor: clicked 
             ? (isDarkMode ? "#171717" : "#fff") 
@@ -149,7 +149,7 @@ const Zoom: React.FC<ZoomProps> = (props) => {
         border: clicked 
             ? `0.5px solid ${isDarkMode ? "#262626" : "#e5e5e5"}` 
             : "transparent",
-        borderRadius: clicked ? "6px" : "0",
+        borderRadius: clicked ? "8px" : "0",
         cursor: clicked ? 'zoom-out' : 'zoom-in',
     };
 
