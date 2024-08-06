@@ -57,20 +57,6 @@ export default function Page() {
           {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.`}
         </motion.h1>
       </motion.section>
-      
-      <motion.div className="flex flex-row items-center justify-between" variants={parentVariants} initial="hidden" animate="visible">
-      <motion.div className="flex flex-row items-center" variants={parentVariants} initial="hidden" animate="visible">
-        <motion.div className="border border-black/10 dark:border-white/10 rounded-lg mr-3 overflow-hidden size-8"variants={childVariants}>
-          <Image className="object-cover" src={Nordnet} alt="Picture of me" />
-        </motion.div>
-        <div className="flex flex-col">
-          <motion.p className="text-sm" variants={childVariants}>Product Designer</motion.p>
-          <motion.p className="text-sm text-neutral-500 dark:text-neutral-400" variants={childVariants}>Nordnet</motion.p>
-        </div>
-      </motion.div>
-      <motion.p className="text-sm text-neutral-500 dark:text-neutral-400" variants={childVariants}>2022 - Now</motion.p>
-      </motion.div>
-
       <motion.div variants={childVariants} >
         <motion.div className="my-8">
           <ImageZoom/>

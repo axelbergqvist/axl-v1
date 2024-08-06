@@ -1,3 +1,8 @@
+'use client';
+import { FC, useRef } from 'react';
+import useOnScreen from '../hooks/useOnScreen';
+import Signature from '../components/signature';
+
 function ArrowIcon() {
   return (
     <svg
@@ -12,12 +17,16 @@ function ArrowIcon() {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export default function Footer() {
+const Footer: FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useOnScreen(ref, '0px'); // Adjust rootMargin if needed
+
   return (
-    <footer className="mb-16">
+    <footer ref={ref} className="mb-16">
+      <Signature animate={isInView} />
       <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
         <li>
           <a
@@ -57,5 +66,7 @@ export default function Footer() {
         © {new Date().getFullYear()} MIT Licensed
       </p>
     </footer>
-  )
-}
+  );
+};
+
+export default Footer;
