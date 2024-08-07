@@ -46,8 +46,8 @@ export default function Page() {
         className=""
         variants={parentVariants}
         initial="hidden"
-        animate="visible"
-      >
+        animate="visible">
+          
         <motion.div variants={childVariants}>
           <Image className="mb-6 rounded-full h-16 w-16" src={profilepic} alt="Picture of me" />
         </motion.div>
@@ -57,6 +57,7 @@ export default function Page() {
           {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.`}
         </motion.h1>
       </motion.section>
+  
       <motion.div variants={childVariants} >
         <motion.div className="my-8">
           <ImageZoom/>
