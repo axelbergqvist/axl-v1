@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import ExperienceItem from '../components/experienceItem'; // Adjust path as necessary
 import Nordnet from '/public/Nordnet.png';
 import Kumpan from '/public/kumpan.png';
-import Freelance from '/public/freelance.png';
-import Brobygrafiska from '/public/Brobygrafiska.png'
-import Berghs from '/public/Berghs.png'
-import Dissect from '/public/Dissect.png'
+import Freelance from '/public/Freelance.png';
+import Brobygrafiska from '/public/brobygrafiska.png'
+import Berghs from '/public/berghs.png'
+import Dissect from '/public/dissect.png'
 
 const parentVariants = {
   hidden: { opacity: 0 },
