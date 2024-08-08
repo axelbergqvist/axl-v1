@@ -9,7 +9,7 @@ const navItems = {
   '/about': {
     name: 'About',
   },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
+  '/lab': {
     name: 'Lab',
   },
 }

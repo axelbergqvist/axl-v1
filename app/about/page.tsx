@@ -10,7 +10,6 @@ import Berghs from '/public/berghs.png';
 import Dissect from '/public/dissect.png';
 import About from '/public/about.png';
 import Image from 'next/image'; // Import Image from next/image
-import ScrambleText from '../components/ScrambleText'; // Import your ScrambleText component
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -54,7 +53,9 @@ export default function Page() {
       animate="visible"
     >
       <motion.div className="mb-4" variants={childVariants}>
-        <ScrambleText text="Lab" className="text-sm text-neutral-500 dark:text-neutral-400" />
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
+          About
+        </motion.p>
       </motion.div>
 
       <motion.h1 className="text-sm mb-24" variants={childVariants}>

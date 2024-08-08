@@ -1,0 +1,54 @@
+/* global.css or wherever you put your styles */
+
+:root {
+    --zoom-border-color: #e5e5e5; /* Default border color */
+  }
+  
+  [data-rmiz-modal-img] {
+    position: absolute;
+    cursor: zoom-out;
+    image-rendering: high-quality;
+    transform-origin: top left;
+    transition: all 300;
+    border-radius: 8px;
+    border: 1px solid var(--zoom-border-color);
+  }
+  
+  /* Add transition properties to smoothly fade in the background blur */
+  [data-rmiz-modal-overlay] {
+    position: absolute;
+    transition: backdrop-filter 0.2s;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0); /* Start with fully transparent background */
+    -webkit-backdrop-filter: blur(10px) opacity(0);
+    backdrop-filter: blur(0px); /* Start with no blur */
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease; /* Smooth transition for both properties */
+  }
+  
+  [data-rmiz-modal-overlay="visible"] {
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly visible background color */
+    -webkit-backdrop-filter: blur(10px) opacity(1);
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    cursor: zoom-out;
+  }
+  
+  [data-rmiz-modal-overlay="hidden"] {
+    transition: backdrop-filter 0.2s;
+    background-color: rgba(0, 0, 0, 0); /* Fully transparent background */
+    -webkit-backdrop-filter: blur(10px) opacity(0);
+    backdrop-filter: blur(0px); /* No blur when hidden */
+  }
+  
+  /* Dark mode specific styles */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --zoom-border-color: #262626; /* Border color for dark mode */
+    }
+  }
+  
+  [data-rmiz-btn-unzoom] {
+    cursor: default;
+    opacity: 0;
+    background-color: #000;
+    color: #000;
+  }
