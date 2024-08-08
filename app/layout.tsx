@@ -51,7 +51,7 @@ export default function RootLayout({
         `${GeistSans.variable} ${GeistMono.variable}`
       )}
     >
-      <body className={`max-w-xl mx-4 mt-6 lg:mx-auto overflow-x-hidden ${GeistSans.className}`}>
+      <body className={`max-w-2xl mx-2 mt-6 md:mx-auto overflow-x-hidden ${GeistSans.className}`}>
         <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible">
           <Navbar />
           {children}

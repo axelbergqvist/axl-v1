@@ -5,9 +5,12 @@ import ExperienceItem from '../components/experienceItem'; // Adjust path as nec
 import Nordnet from '/public/Nordnet.png';
 import Kumpan from '/public/kumpan.png';
 import Freelance from '/public/Freelance.png';
-import Brobygrafiska from '/public/brobygrafiska.png'
-import Berghs from '/public/berghs.png'
-import Dissect from '/public/dissect.png'
+import Brobygrafiska from '/public/brobygrafiska.png';
+import Berghs from '/public/berghs.png';
+import Dissect from '/public/dissect.png';
+import About from '/public/about.png';
+import Image from 'next/image'; // Import Image from next/image
+import ScrambleText from '../components/ScrambleText'; // Import your ScrambleText component
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -45,16 +48,24 @@ const childVariants = {
 export default function Page() {
   return (
     <motion.section
-      className=""
+      className="p-0"
       variants={parentVariants}
       initial="hidden"
       animate="visible"
     >
-      <motion.h1 className="text-sm mb-16" variants={childVariants}>
-        {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.`}
+      <motion.div className="mb-4" variants={childVariants}>
+        <ScrambleText text="Lab" className="text-sm text-neutral-500 dark:text-neutral-400" />
+      </motion.div>
+
+      <motion.h1 className="text-sm mb-24" variants={childVariants}>
+        {`I am a designer currently shaping the native mobile apps at Linear and crafting app icons for a variety of clients.`}
+        <br /> <br />
+        {`I focus on the intersection of form and function to create experiences that effortlessly become an extension of oneself. I believe in ideas over opinions, prototypes as the most valuable tool for collaboration, and exploring one hundred ideas to find the right one.`}
+        <br /> <br />
+        {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
       </motion.h1>
 
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           Experience
         </motion.p>
@@ -84,7 +95,22 @@ export default function Page() {
         </motion.div>
       </div>
 
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          Building
+        </motion.p>
+        <motion.div className="flex flex-col gap-6 w-full">
+          <ExperienceItem
+            role="Dissect"
+            company="Like Mobbin, but you get the Figma file"
+            date=""
+            imageSrc={Dissect}
+            link="https://nordnet.com" // Example link
+          />
+        </motion.div>
+      </div>
+
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           What I like
         </motion.p>
@@ -102,23 +128,8 @@ export default function Page() {
           </motion.div>
         </motion.div>
       </div>
-
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
-          Building
-        </motion.p>
-        <motion.div className="flex flex-col gap-6 w-full">
-          <ExperienceItem
-            role="Dissect"
-            company="Like Mobbin, but you get the Figma file"
-            date="2024 — Now"
-            imageSrc={Dissect}
-            link="https://nordnet.com" // Example link
-          />
-        </motion.div>
-      </div>
       
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           Education
         </motion.p>
@@ -140,11 +151,6 @@ export default function Page() {
           />
         </motion.div>
       </div>
-
-
-
-
-      
     </motion.section>
   );
 }
