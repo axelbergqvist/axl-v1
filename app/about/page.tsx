@@ -83,6 +83,40 @@ export default function Page() {
           />
         </motion.div>
       </div>
+
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          What I like
+        </motion.p>
+        <motion.div className="flex flex-row gap-4 w-full">
+          <motion.div className="flex flex-col gap-4 w-full">
+            <motion.p className="text-sm" variants={childVariants}>Delightful interactions</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Typography</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Organized files</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Motion design</motion.p>
+          </motion.div>
+          <motion.div className="flex flex-col gap-4 w-full">
+            <motion.p className="text-sm" variants={childVariants}>Data-driven design</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Clear communication</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Teamwork</motion.p>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          Building
+        </motion.p>
+        <motion.div className="flex flex-col gap-6 w-full">
+          <ExperienceItem
+            role="Dissect"
+            company="Like Mobbin, but you get the Figma file"
+            date="2024 — Now"
+            imageSrc={Dissect}
+            link="https://nordnet.com" // Example link
+          />
+        </motion.div>
+      </div>
       
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
@@ -107,21 +141,9 @@ export default function Page() {
         </motion.div>
       </div>
 
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
-          Building
-        </motion.p>
 
-        <motion.div className="flex flex-col gap-6 w-full">
-          <ExperienceItem
-            role="Dissect"
-            company="Dissect your favorite apps in Figma"
-            date="2024 — Now"
-            imageSrc={Dissect}
-            link="https://nordnet.com" // Example link
-          />
-        </motion.div>
-      </div>
+
+
       
     </motion.section>
   );
