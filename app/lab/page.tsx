@@ -7,10 +7,10 @@ import Zoom from 'react-medium-image-zoom';
 import CustomZoomContent from '../components/CustomZoomContent';
 import 'react-medium-image-zoom/dist/styles.css';
 import '../image-zoom.css';
+import '../custom-zoom.css';
 import useTheme from '../hooks/useTheme'; // Import the theme hook
 import WorktestLight from '/public/worktest3-light.png';
 import WorktestDark from '/public/worktest3-dark.png'; // Import the dark mode image
-import '../custom-zoom.css';
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -67,7 +67,7 @@ export default function Page() {
       <motion.div variants={childVariants}>
         <Zoom ZoomContent={CustomZoomContent}>
           <Image
-            className="mb-6 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
+            className="mb-4 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
             src={imageSrc} // Use the chosen image
             alt="Picture of me"
             layout="responsive"
@@ -75,6 +75,9 @@ export default function Page() {
             height={400}
           />
         </Zoom>
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
+          Amex Watch App
+        </motion.p>
       </motion.div>
     </motion.section>
   );

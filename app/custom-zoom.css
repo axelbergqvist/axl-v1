@@ -20,22 +20,21 @@
     transition: backdrop-filter 0.2s;
     inset: 0;
     background-color: rgba(0, 0, 0, 0); /* Start with fully transparent background */
-    -webkit-backdrop-filter: blur(10px) opacity(0);
+    -webkit-backdrop-filter: blur(0px) opacity(0);
     backdrop-filter: blur(0px); /* Start with no blur */
     transition: background-color 0.3s ease, backdrop-filter 0.3s ease; /* Smooth transition for both properties */
   }
   
   [data-rmiz-modal-overlay="visible"] {
     background-color: rgba(0, 0, 0, 0.1); /* Slightly visible background color */
-    -webkit-backdrop-filter: blur(10px) opacity(1);
-    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(20px) opacity(1);
+    backdrop-filter: blur(20px); /* Apply blur effect */
     cursor: zoom-out;
   }
   
-  [data-rmiz-modal-overlay="hidden"] {
-    transition: backdrop-filter 0.2s;
+  [data-rmiz-modal-overlay="hidden"] {  
     background-color: rgba(0, 0, 0, 0); /* Fully transparent background */
-    -webkit-backdrop-filter: blur(10px) opacity(0);
+    -webkit-backdrop-filter: blur(0px) opacity(0);
     backdrop-filter: blur(0px); /* No blur when hidden */
   }
   
