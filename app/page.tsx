@@ -77,7 +77,7 @@ export default function Page() {
             initial={{ scale: 1 }}
             whileHover={{ scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="mb-6 rounded-full cursor-pointer bg-red-500 h-16 w-16 overflow-hidden"
+            className="mb-6 rounded-full cursor-pointer h-16 w-16 overflow-hidden"
             onClick={handleProfilePicClick}
           >
             <Image

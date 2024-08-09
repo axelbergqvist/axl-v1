@@ -63,7 +63,13 @@ html {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+  background-color: var(--bg-neutral-50);
+  color: var(--text-neutral-800);
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--border-neutral-200);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
 }
 
 .prose code {
@@ -152,5 +158,5 @@ table {
 }
 
 .active {
-  @apply text-white;
+  color: white;
 }
