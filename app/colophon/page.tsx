@@ -71,7 +71,7 @@ export default function Page() {
         </motion.p>
       </motion.div>
       <motion.p className="text-sm mb-12" variants={childVariants}>
-        {`Built with Next.js, Tailwind and hosted on Vercel with a lot of support by ChatGPT, since I am by no means a software engineer.`}
+        {`Built with Next.js, Tailwind and hosted on Vercel with a lot of support by ChatGPT and Copilot, since I am by no means a software engineer.`}
       </motion.p>
 
       <motion.div className="mb-3" variants={childVariants}>

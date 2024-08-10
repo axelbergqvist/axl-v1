@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import ExperienceItem from '../components/experienceItem'; // Adjust path as necessary
+import TrackList from '../components/TrackList'; // Import the TrackList component
 import Nordnet from '/public/Nordnet.png';
 import Kumpan from '/public/kumpan.png';
 import Freelance from '/public/Freelance.png';
@@ -52,6 +53,12 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
+      {/* Add the TrackList component here */}
+      <motion.div className="mb-8" variants={childVariants}>
+        <h2 className="text-lg font-semibold mb-4">Recently Played</h2>
+        <TrackList />
+      </motion.div>
+
       <motion.div className="mb-4" variants={childVariants}>
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
           About
