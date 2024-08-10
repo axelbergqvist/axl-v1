@@ -28,7 +28,7 @@ function LatestTracks() {
                 className="w-8 h-8 object-cover rounded-md"
               />
               <div className="flex flex-col">
-                <span className="text-sm">{track.name}</span>
+                <span className="text-sm truncate">{track.name}</span>
                 <span className="text-neutral-500 dark:text-neutral-400 text-sm">{track.artist}</span>
               </div>
             </a>
