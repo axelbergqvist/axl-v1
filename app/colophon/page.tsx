@@ -8,6 +8,7 @@ import '../custom-zoom.css';
 import useTheme from '../hooks/useTheme'; // Import the theme hook
 import WorktestLight from '/public/worktest3-light.png';
 import WorktestDark from '/public/worktest3-dark.png'; // Import the dark mode image
+import LatestTracks from '../components/LatestTracks';
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -55,6 +56,7 @@ export default function Page() {
       animate="visible"
     >
       <motion.div className="mb-3" variants={childVariants}>
+        <LatestTracks />
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
           Typography
         </motion.p>
