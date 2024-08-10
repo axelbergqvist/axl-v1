@@ -1,3 +1,5 @@
+// app/components/TrackListItem.jsx
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -17,10 +19,10 @@ const TrackListItem = ({ track }) => {
         className="w-8 h-8 object-cover rounded-md mr-3"
       />
       <div>
-        <div className="text-sm">
+        <div className="text-sm truncate">
           {track.title}
         </div>
-        <div className="text-sm text-neutral-500 dark:text-neutral-400">
+        <div className="text-sm truncate text-neutral-500 dark:text-neutral-400">
           {track.artist}
         </div>
       </div>
