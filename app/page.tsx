@@ -95,7 +95,7 @@ export default function Page() {
           </motion.div>
         </motion.div>
         <motion.p className="text-sm" variants={childVariants}>Axel Bergqvist</motion.p>
-        <motion.p className="text-sm mb-6 text-neutral-500 dark:text-neutral-400" variants={childVariants}>Stockholm, Sweden</motion.p>
+        <motion.p className="text-sm mb-6 text-neutral-500 dark:text-neutral-400" variants={childVariants}>B. 2001. Based in Stockholm.</motion.p>
         <motion.h1 className="text-sm mb-16" variants={childVariants}>
           {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.`}
         </motion.h1>
