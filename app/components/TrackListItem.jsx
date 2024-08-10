@@ -1,53 +1,30 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const TrackListItem = ({ track }) => {
   return (
-    <a
+    <motion.a
       href={track.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="track-list-item"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        textDecoration: 'none',
-        color: 'inherit',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        padding: '10px',
-        marginBottom: '10px',
-        transition: 'background-color 0.3s',
-      }}
+      className="flex items-center text-inherit no-underline rounded-lg"
+      whileHover={{ x: 4 }} // Hover animation
+      transition={{ type: 'spring', stiffness: 400, damping: 30 }} // Optional: Add smoothness to the animation
     >
       <img
         src={track.coverImage}
         alt={`${track.title} cover`}
-        style={{
-          width: '50px',
-          height: '50px',
-          objectFit: 'cover',
-          borderRadius: '4px',
-          marginRight: '10px',
-        }}
+        className="w-8 h-8 object-cover rounded-md mr-3"
       />
       <div>
-        <div
-          style={{
-            fontWeight: 'bold',
-            marginBottom: '5px',
-          }}
-        >
+        <div className="text-sm">
           {track.title}
         </div>
-        <div
-          style={{
-            color: '#555',
-          }}
-        >
+        <div className="text-sm text-neutral-500 dark:text-neutral-400">
           {track.artist}
         </div>
       </div>
-    </a>
+    </motion.a>
   );
 };
 

@@ -53,12 +53,6 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-      {/* Add the TrackList component here */}
-      <motion.div className="mb-8" variants={childVariants}>
-        <h2 className="text-lg font-semibold mb-4">Recently Played</h2>
-        <TrackList />
-      </motion.div>
-
       <motion.div className="mb-4" variants={childVariants}>
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
           About
@@ -72,6 +66,18 @@ export default function Page() {
         <br /> <br />
         {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
       </motion.h1>
+
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          Recent tracks
+        </motion.p>
+
+        <motion.div variants={childVariants} className="flex flex-col gap-6 w-full">
+          <motion.div variants={childVariants}>
+            <TrackList />
+          </motion.div>
+        </motion.div>
+      </div>
 
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
