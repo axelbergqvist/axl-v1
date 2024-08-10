@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useSWR from 'swr';
+import { fetcher } from '@/lib/fetcher'; // Adjust the import path based on your project structure
 import TrackListItem from './TrackListItem';
 
 const TrackList = () => {
-  const [tracks, setTracks] = useState([]);
+  const { data, error } = useSWR('/api/stats', fetcher, {
+    refreshInterval: 30000, // Poll every 30 seconds
+  });
 
-  useEffect(() => {
-    const fetchTracks = async () => {
-      try {
-        const response = await fetch('/api/stats'); // Adjust the path based on your actual API endpoint
-        const data = await response.json();
-        setTracks(data);
-      } catch (error) {
-        console.error('Error fetching tracks:', error);
-      }
-    };
+  if (error) return <p>Error fetching tracks</p>;
+  if (!data) return <p>Loading...</p>;
 
-    fetchTracks();
-  }, []);
+  console.log(data); // Inspect the data format in the console
+
+  // Ensure data is an array before attempting to map over it
+  if (!Array.isArray(data)) {
+    return <p>Unexpected data format</p>;
+  }
 
   return (
     <div className="grid grid-cols-2 gap-6">
-      {tracks.length > 0 ? (
-        tracks.map((track, index) => (
+      {data.length > 0 ? (
+        data.map((track, index) => (
           <TrackListItem key={index} track={track} />
         ))
       ) : (

@@ -1,5 +1,4 @@
-// app/api/stats/route.js
-
+// app/api/stats/recently-played/route.js
 import { getRecentlyPlayed } from "@/lib/spotify"; // Adjust the import path based on your project structure
 
 export async function GET() {
