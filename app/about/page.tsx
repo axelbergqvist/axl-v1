@@ -10,6 +10,7 @@ import Berghs from '/public/berghs.png';
 import Dissect from '/public/dissect.png';
 import About from '/public/about.png';
 import Image from 'next/image'; // Import Image from next/image
+import Scrobbles from '../components/Scrobbles'; // Import the Scrobbles component
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -72,6 +73,7 @@ export default function Page() {
         </motion.p>
 
         <motion.div className="flex flex-col gap-6 w-full">
+        <Scrobbles />
           <ExperienceItem
             role="Product Designer"
             company="Nordnet"
