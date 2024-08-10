@@ -19,7 +19,7 @@ return (
             className="w-8 h-8 object-cover rounded-md mr-3"
         />
         <div>
-            <div className="text-sm text-red-500 w-full overflow-hidden whitespace-nowrap overflow-ellipsis">
+            <div className="text-sm w-full truncate overflow-hidden whitespace-nowrap overflow-ellipsis">
                 {track.title}
             </div>
             <div className="text-sm truncate text-neutral-500 dark:text-neutral-400">

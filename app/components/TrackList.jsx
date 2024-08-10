@@ -1,3 +1,5 @@
+// app/components/TrackList.jsx
+
 import React from 'react';
 import useSWR from 'swr';
 import TrackListItem from './TrackListItem';
@@ -5,8 +7,8 @@ import { fetcher } from '@/lib/fetcher';
 
 
 const TrackList = () => {
-  const { data, error } = useSWR('/api/stats', fetcher, {
-    refreshInterval: 30000, // Poll every 30 seconds
+  const { data, error } = useSWR('/api/stats', fetcher,  {
+    refreshInterval: 1000, // Poll every 30 seconds
   });
 
   if (error) return <p>Error fetching tracks</p>;
