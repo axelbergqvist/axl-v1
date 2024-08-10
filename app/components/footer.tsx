@@ -1,5 +1,3 @@
-import Signature from './signature'
-
 export default function Footer() {
   return (
     <footer className="my-16">
@@ -26,7 +24,6 @@ export default function Footer() {
           >
             <p className="text-sm text-neutral-600 dark:text-neutral-400">Colophon</p>
           </a>
-          <Signature className="h-10"/>
       </div>
     </footer>
   )
