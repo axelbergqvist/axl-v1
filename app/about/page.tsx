@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import ExperienceItem from '../components/experienceItem'; // Adjust path as necessary
-import TrackList from '../components/TrackList'; // Import the TrackList component
 import Nordnet from '/public/Nordnet.png';
 import Kumpan from '/public/kumpan.png';
 import Freelance from '/public/Freelance.png';
@@ -74,7 +73,6 @@ export default function Page() {
 
         <motion.div variants={childVariants} className="flex flex-col gap-6 w-full">
           <motion.div variants={childVariants}>
-            <TrackList />
           </motion.div>
         </motion.div>
       </div>

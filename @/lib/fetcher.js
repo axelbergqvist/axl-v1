@@ -1,9 +1,8 @@
-// lib/fetcher.js
-
-export const fetcher = (url) => fetch(url).then((res) => {
-    if (!res.ok) {
-      throw new Error(`An error occurred: ${res.statusText}`);
-    }
-    return res.json();
-  });
-  
+// src/lib/fetcher.js
+export const fetcher = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+      throw new Error('Failed to fetch');
+  }
+  return response.json();
+};
