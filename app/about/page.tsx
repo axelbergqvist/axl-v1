@@ -88,7 +88,7 @@ export default function Page() {
       </motion.h1>
 
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
           Recent tracks
         </motion.p>
 
@@ -98,7 +98,7 @@ export default function Page() {
       </div>
 
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
           Experience
         </motion.p>
 
@@ -128,7 +128,7 @@ export default function Page() {
       </div>
 
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
           Building
         </motion.p>
         <motion.div className="flex flex-col gap-6 w-full">

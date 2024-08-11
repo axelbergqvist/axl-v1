@@ -75,10 +75,27 @@ export default function Page() {
             height={400}
           />
         </Zoom>
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-24">
           Amex Watch App
         </motion.p>
       </motion.div>
+      
+      <motion.div variants={childVariants}>
+        <Zoom ZoomContent={CustomZoomContent}>
+          <Image
+            className="mb-4 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
+            src={imageSrc} // Use the chosen image
+            alt="Picture of me"
+            layout="responsive"
+            width={600}
+            height={400}
+          />
+        </Zoom>
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6">
+          Amex Watch App
+        </motion.p>
+      </motion.div>
+
     </motion.section>
   );
 }
