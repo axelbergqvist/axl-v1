@@ -3,9 +3,7 @@
 "use client";
 
 import useSWR from 'swr';
-import { useState } from 'react';
 
-// Define a fetcher function to fetch data from the API
 const fetcher = async (url) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -17,8 +15,9 @@ const fetcher = async (url) => {
 
 const RecentlyPlayed = () => {
   const { data: tracks, error, isValidating } = useSWR('/api/tracks', fetcher, {
-    revalidateOnFocus: true, // Refetch data when the window is refocused
-    refreshInterval: 60000, // Refresh data every 60 seconds
+    revalidateOnFocus: true,
+    refreshInterval: 30000, // Adjust as needed
+    dedupingInterval: 0, // Add this line to disable deduping
   });
 
   if (isValidating) return <p>Loading...</p>;
