@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import ExperienceItem from '../components/experienceItem'; // Adjust path as necessary
+import RecentlyPlayed from '../components/RecentlyPlayed'; // Import the RecentlyPlayed component
 import Nordnet from '/public/Nordnet.png';
 import Kumpan from '/public/kumpan.png';
 import Freelance from '/public/Freelance.png';
@@ -9,7 +11,7 @@ import Brobygrafiska from '/public/brobygrafiska.png';
 import Berghs from '/public/berghs.png';
 import Dissect from '/public/dissect.png';
 import About from '/public/about.png';
-import Image from 'next/image'; // Import Image from next/image
+import Image from 'next/image';
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -45,6 +47,25 @@ const childVariants = {
 };
 
 export default function Page() {
+  const [recentlyPlayedTracks, setRecentlyPlayedTracks] = useState([]);
+
+  useEffect(() => {
+    async function fetchRecentlyPlayedTracks() {
+      try {
+        const response = await fetch('/api/recently-played');
+        if (!response.ok) {
+          throw new Error('Failed to fetch recently played tracks');
+        }
+        const data = await response.json();
+        setRecentlyPlayedTracks(data);
+      } catch (error) {
+        console.error('Error fetching recently played tracks:', error);
+      }
+    }
+
+    fetchRecentlyPlayedTracks();
+  }, []);
+
   return (
     <motion.section
       className="p-0"
@@ -72,8 +93,7 @@ export default function Page() {
         </motion.p>
 
         <motion.div variants={childVariants} className="flex flex-col gap-6 w-full">
-          <motion.div variants={childVariants}>
-          </motion.div>
+          <RecentlyPlayed tracks={recentlyPlayedTracks} />
         </motion.div>
       </div>
 
@@ -162,7 +182,6 @@ export default function Page() {
             link="https://nordnet.com" // Example link
           />
         </motion.div>
-      </div>
-    </motion.section>
+      </div>    </motion.section>
   );
 }
