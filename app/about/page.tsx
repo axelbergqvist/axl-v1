@@ -73,19 +73,19 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="mb-4" variants={childVariants}>
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400">
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
           About
         </motion.p>
-      </motion.div>
 
-      <motion.h1 className="text-sm mb-24" variants={childVariants}>
+      <motion.h1 className="text-sm w-full" variants={childVariants}>
         {`I am a designer currently shaping the native mobile apps at Linear and crafting app icons for a variety of clients.`}
         <br /> <br />
         {`I focus on the intersection of form and function to create experiences that effortlessly become an extension of oneself. I believe in ideas over opinions, prototypes as the most valuable tool for collaboration, and exploring one hundred ideas to find the right one.`}
         <br /> <br />
         {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
       </motion.h1>
+      </div>
 
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>

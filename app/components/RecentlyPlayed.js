@@ -68,7 +68,7 @@ const RecentlyPlayed = ({ tracks }) => {
             </div>
             <div className="flex-grow min-w-0">
               <p className="text-sm truncate">{track.title}</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{track.artist}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 truncate">{track.artist}</p>
             </div>
           </motion.a>
         ))}

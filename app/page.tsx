@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import profilepic from 'public/profilepic.png';
 import WorktestDark from '/public/worktest4-dark.png';
-import WorktestLight from '/public/worktest4-light.png';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import './image-zoom.css';
@@ -49,10 +48,6 @@ const childVariants = {
 };
 
 export default function Page() {
-  const isDarkMode = useTheme(); // Use the theme hook to get the current mode
-
-  const imageSrc = isDarkMode ? WorktestDark : WorktestLight; // Choose image based on theme
-
   const handleProfilePicClick = () => {
     // Find the canvas element where the confetti will be rendered
     const confettiCanvas = document.querySelector('canvas');
@@ -103,7 +98,7 @@ export default function Page() {
           <Zoom ZoomContent={CustomZoomContent}>
             <Image
               className="mb-6 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
-              src={imageSrc} // Use the chosen image
+              src={WorktestDark} // Use the chosen image
               alt="Work test image"
               layout="responsive"
               width={600}

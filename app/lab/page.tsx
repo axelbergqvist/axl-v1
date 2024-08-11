@@ -8,9 +8,8 @@ import CustomZoomContent from '../components/CustomZoomContent';
 import 'react-medium-image-zoom/dist/styles.css';
 import '../image-zoom.css';
 import '../custom-zoom.css';
-import useTheme from '../hooks/useTheme'; // Import the theme hook
-import WorktestLight from '/public/worktest3-light.png';
 import WorktestDark from '/public/worktest3-dark.png'; // Import the dark mode image
+import Worktest2 from '/public/worktest4-dark.png'
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -18,7 +17,7 @@ const parentVariants = {
     opacity: 1,
     transition: {
       duration: 0.5,
-      staggerChildren: 0.05,
+      staggerChildren: 0.1,
       type: 'spring',
       stiffness: 100,
       damping: 10,
@@ -46,10 +45,6 @@ const childVariants = {
 };
 
 export default function Page() {
-  const isDarkMode = useTheme(); // Use the theme hook to get the current mode
-
-  const imageSrc = isDarkMode ? WorktestDark : WorktestLight; // Choose image based on theme
-
   return (
     <motion.section
       className="p-0"
@@ -57,18 +52,20 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="mb-4" variants={childVariants}>
-        <ScrambleText text="Lab" className="text-sm text-neutral-500 dark:text-neutral-400" />
-      </motion.div>
+        <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
+        <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
+        <ScrambleText text="Lab" className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" />
+        </motion.div>
 
-      <motion.h1 className="text-sm mb-24" variants={childVariants}>
-        {`Besides my main projects, I explore different areas of interest in my free time. This is the best way to discover useful solutions, train my eyes for details, and develop more specific insights in certain topics.`}
+      <motion.h1 className="text-sm w-full" variants={childVariants}>
+      {`Besides my main projects, I explore different areas of interest in my free time. This is the best way to discover useful solutions, train my eyes for details, and develop more specific insights in certain topics.`}
       </motion.h1>
+      </div>
       <motion.div variants={childVariants}>
         <Zoom ZoomContent={CustomZoomContent}>
           <Image
-            className="mb-4 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
-            src={imageSrc} // Use the chosen image
+            className="mb-6 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
+            src={WorktestDark} // Use the chosen image
             alt="Picture of me"
             layout="responsive"
             width={600}
@@ -83,8 +80,8 @@ export default function Page() {
       <motion.div variants={childVariants}>
         <Zoom ZoomContent={CustomZoomContent}>
           <Image
-            className="mb-4 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
-            src={imageSrc} // Use the chosen image
+            className="mb-6 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
+            src={Worktest2} // Use the chosen image
             alt="Picture of me"
             layout="responsive"
             width={600}
