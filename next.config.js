@@ -23,4 +23,11 @@ module.exports = {
       },
     ]
   },
+  
 }
+
+module.exports = {
+  images: {
+    domains: ['i.scdn.co'], // Allow images from Spotify
+  },
+};
