@@ -1,5 +1,3 @@
-// components/RecentlyPlayed.js
-
 'use client'
 
 import Image from 'next/image';
@@ -43,19 +41,21 @@ const RecentlyPlayed = ({ tracks }) => {
 
   return (
     <motion.div
-      className=""
+      className="w-full"
       initial="hidden"
       animate="visible"
       variants={parentVariants}
     >
-      <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4" variants={childVariants}>
+      <motion.div className="grid grid-cols-2 gap-4" variants={childVariants}>
         {tracks.slice(0, 6).map((track) => (
           <motion.a
             key={track.songUrl}
             href={track.songUrl}
+            whileHover={{ x: 4 }} // Hover animation
+            transition={{ type: 'spring', stiffness: 400, damping: 30 }} // Optional: Add smoothness to the animation
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-red-200 transition duration-300 flex flex-row items-center cursor-pointer"
+            className="flex items-center cursor-pointer"
           >
             <div className="flex-shrink-0 mr-3">
               <Image
@@ -63,12 +63,12 @@ const RecentlyPlayed = ({ tracks }) => {
                 alt={track.title}
                 width={32}
                 height={32}
-                className="rounded-md w-full h-8 object-cover"
+                className="rounded-md w-8 h-8 object-cover"
               />
             </div>
-            <div className="flex-grow">
-              <p className="text-sm text-gray-800 truncate">{track.title}</p>
-              <p className="text-sm text-gray-600 truncate">{track.artist}</p>
+            <div className="flex-grow min-w-0">
+              <p className="text-sm truncate">{track.title}</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{track.artist}</p>
             </div>
           </motion.a>
         ))}
