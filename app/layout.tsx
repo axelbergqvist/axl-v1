@@ -1,5 +1,4 @@
 import './global.css'
-import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
@@ -7,19 +6,20 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
+import Head from 'next/head'; // Import Head component
 
-export const metadata: Metadata = {
+export const metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: 'Axel Bergqvist',
+    template: '%s | Axel Bergqvist',
   },
-  description: 'This is my portfolio.',
+  description: 'Product Designer based in Stockholm.',
   openGraph: {
-    title: 'My Portfolio',
-    description: 'This is my portfolio.',
+    title: 'Axel Bergqvist',
+    description: 'Product Designer based in Stockholm.',
     url: baseUrl,
-    siteName: 'My Portfolio',
+    siteName: 'Axel Bergqvist',
     locale: 'en_US',
     type: 'website',
   },
@@ -51,6 +51,10 @@ export default function RootLayout({
         `${GeistSans.variable} ${GeistMono.variable}`
       )}
     >
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        {/* You can add more metadata here if needed */}
+      </Head>
       <body className={`max-w-screen-sm mx-2 mt-6 md:mx-auto overflow-x-hidden ${GeistSans.className}`}>
         <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible">
           <Navbar />

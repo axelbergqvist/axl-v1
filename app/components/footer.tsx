@@ -22,7 +22,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             href="/colophon"
           >
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">Colophon</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">View colophon</p>
           </a>
       </div>
     </footer>
