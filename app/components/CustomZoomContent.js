@@ -3,8 +3,9 @@ import React, { useState, useLayoutEffect } from 'react';
 
 const CustomZoomContent = ({
   buttonUnzoom, // default unzoom button
+  img,         // your image or video element
   modalState,   // current state of the zoom modal: UNLOADED, LOADING, LOADED, UNLOADING
-  img,          // your image, prepped for zooming
+  onUnzoom,     // callback for unzooming
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -22,7 +23,7 @@ const CustomZoomContent = ({
     <div className="custom-zoom-content">
       {buttonUnzoom}
       <div className={overlayClass}>
-        {img}
+        {React.cloneElement(img, { onClick: onUnzoom })}
       </div>
     </div>
   );
