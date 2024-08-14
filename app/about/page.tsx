@@ -73,8 +73,8 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
+      <div className="flex flex-col gap-4 mb-24">
+        <motion.p className="text" variants={childVariants}>
           About
         </motion.p>
 
@@ -86,63 +86,8 @@ export default function Page() {
         {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
       </motion.h1>
       </div>
-
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Recent tracks
-        </motion.p>
-
-        <motion.div variants={childVariants} className="flex flex-col gap-6 w-full">
-          <RecentlyPlayed tracks={recentlyPlayedTracks} />
-        </motion.div>
-      </div>
-
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Experience
-        </motion.p>
-
-        <motion.div className="flex flex-col gap-6 w-full">
-          <ExperienceItem
-            role="Product Designer"
-            company="Nordnet"
-            date="2022 – Now"
-            imageSrc={Nordnet}
-            link="https://nordnet.com" // Example link
-          />
-          <ExperienceItem
-            role="UX Designer"
-            company="Kumpan"
-            date="2021"
-            imageSrc={Kumpan}
-            link="https://nordnet.com" // Example link
-          />
-          <ExperienceItem
-            role="UX & Graphic Designer"
-            company="Freelance"
-            date="2016 – 2021"
-            imageSrc={Freelance}
-            link="https://nordnet.com" // Example link
-          />
-        </motion.div>
-      </div>
-
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Building
-        </motion.p>
-        <motion.div className="flex flex-col gap-6 w-full">
-          <ExperienceItem
-            role="Dissect"
-            company="Like Mobbin, but you get the Figma file"
-            date=""
-            imageSrc={Dissect}
-            link="https://nordnet.com" // Example link
-          />
-        </motion.div>
-      </div>
-
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
+      
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           What I like
         </motion.p>
@@ -160,13 +105,71 @@ export default function Page() {
           </motion.div>
         </motion.div>
       </div>
+
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
+          Recent tracks
+        </motion.p>
+
+        <motion.div variants={childVariants} className="flex flex-col gap-4 w-full">
+          <RecentlyPlayed tracks={recentlyPlayedTracks} />
+        </motion.div>
+      </div>
+
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
+          Experience
+        </motion.p>
+
+        <motion.div className="flex flex-col gap-4 w-full">
+          <ExperienceItem
+            role="Product Designer at Nordnet"
+            company="Nordnet"
+            date="2022 – Now"
+            imageSrc={Nordnet}
+            link="https://nordnet.com" // Example link
+          />
+          <ExperienceItem
+            role="UX Designer at Kumpan"
+            company="Kumpan"
+            date="2021"
+            imageSrc={Kumpan}
+            link="https://nordnet.com" // Example link
+          />
+          <ExperienceItem
+            role="UX & Graphic Designer at Freelance"
+            company="Freelance"
+            date="2016 – 2021"
+            imageSrc={Freelance}
+            link="https://nordnet.com" // Example link
+          />
+        </motion.div>
+      </div>
+
+      {/*
+      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
+          Building
+        </motion.p>
+        <motion.div className="flex flex-col gap-4 w-full">
+          <ExperienceItem
+            role="Dissect"
+            company="Like Mobbin, but you get the Figma file"
+            date=""
+            imageSrc={Dissect}
+            link="https://nordnet.com" // Example link
+          />
+        </motion.div>
+      </div>
+      */}
       
+      {/*
       <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           Education
         </motion.p>
 
-        <motion.div className="flex flex-col gap-6 w-full">
+        <motion.div className="flex flex-col gap-4 w-full">
           <ExperienceItem
             role="Berghs School of Communication"
             company="UX & Digital Product Design"
@@ -182,6 +185,9 @@ export default function Page() {
             link="https://nordnet.com" // Example link
           />
         </motion.div>
-      </div>    </motion.section>
+    
+      </div>
+           */}
+          </motion.section>
   );
 }

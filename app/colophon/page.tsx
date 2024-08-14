@@ -90,6 +90,7 @@ export default function Page() {
             <motion.p className="text-sm" variants={childVariants}>benji.org</motion.p>
             <motion.p className="text-sm" variants={childVariants}>sanalabs.com</motion.p>
             <motion.p className="text-sm" variants={childVariants}>linusrogge.com</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>read.cv</motion.p>
             <motion.p className="text-sm" variants={childVariants}>luyuhang.net</motion.p>
             <motion.p className="text-sm" variants={childVariants}>rainbow.me</motion.p>
             <motion.p className="text-sm" variants={childVariants}>rauno.me</motion.p>

@@ -60,7 +60,8 @@ export default function Page() {
       animate="visible"
     >
       {/* Fixed sidebar with anchor links */}
-      <motion.div className="fixed top-40 left-16 z-10 xl:visible invisible" variants={childVariants}>
+      {/*}
+      <motion.div className="fixed top-40 left-12 z-10 xl:visible invisible" variants={childVariants}>
         <ul className="space-y-1">
           <div className="mb-4">
             <a href="/" className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300">
@@ -76,10 +77,11 @@ export default function Page() {
           ))}
         </ul>
       </motion.div>
+      //*/}
 
-      <div className="flex flex-col sm:gap-2 gap-6 mb-24">
-        <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full">Nordnet Order</p>
+      <div className="flex flex-col mb-10">
+        <motion.div className="text mb-4" variants={childVariants}>
+          <p>Nordnet Order</p>
         </motion.div>
 
         <motion.h1 className="text-sm w-full" variants={childVariants}>
@@ -88,19 +90,15 @@ export default function Page() {
       </div>
       
       <motion.div variants={childVariants}>
-        <div className="flex justify-center mb-12">
-          <Zoom ZoomContent={CustomZoomContent}>
-            <div className="lg:w-[900px] w-full mx-auto">
+        <div className="lg:w-[800px]flex justify-center mx-auto mb-10">
               <CustomVideoPlayer src="/07.mp4" />
-            </div>
-          </Zoom>
         </div>
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
           Problem
         </motion.p>
       </motion.div>
 
-      <div className="flex flex-col sm:gap-2 gap-6 mb-24">
+      <div className="flex flex-col sm:gap-2 gap-6 mb-10">
         <motion.p className="text-sm w-full" variants={childVariants}>
           {`When it comes to the visual aspects of design, the framework I believe in is applying taste and collaboration to extensive iteration. For me, this often manifests as a cyclical process of analyzing my work, figuring out what parts could be improved, tweaking a value slightly, and comparing the new version to the old.`}
           <br/><br/>

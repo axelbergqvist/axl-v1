@@ -52,9 +52,9 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-        <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-        <ScrambleText text="Lab" className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" />
+        <div className="flex flex-col gap-4 mb-24">
+        <motion.div className="text" variants={childVariants}>
+        <ScrambleText text="Lab" className="text" />
         </motion.div>
 
       <motion.h1 className="text-sm w-full" variants={childVariants}>

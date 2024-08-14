@@ -37,7 +37,7 @@ const childVariants = {
 };
 
 const RecentlyPlayed = ({ tracks }) => {
-  if (!tracks || tracks.length === 0) return <p className="text-gray-500 italic">No tracks available</p>;
+  if (!tracks || tracks.length === 0) return <p className="text-neutral-500 text-sm">No tracks available</p>;
 
   return (
     <motion.div
@@ -46,25 +46,28 @@ const RecentlyPlayed = ({ tracks }) => {
       animate="visible"
       variants={parentVariants}
     >
-      <motion.div className="grid grid-cols-2 gap-6" variants={childVariants}>
+      <motion.div className="grid grid-cols-2 gap-4" variants={childVariants}>
         {tracks.slice(0, 6).map((track) => (
           <motion.a
             key={track.songUrl}
             href={track.songUrl}
-            whileHover={{ x: 4 }} // Hover animation
-            transition={{ type: 'spring', stiffness: 400, damping: 30 }} // Optional: Add smoothness to the animation
+            whileHover={{ x: 4 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center cursor-pointer"
           >
-            <div className="flex-shrink-0 mr-3">
-              <Image
-                src={track.coverImage.url}
-                alt={track.title}
-                width={32}
-                height={32}
-                className="rounded-lg w-8 h-8 object-cover"
-              />
+            <div className="flex-shrink-0 mr-3 rounded-lg relative">
+              <div className="w-8 h-8 rounded-lg overflow-hidden relative">
+                <Image
+                  src={track.coverImage.url}
+                  alt={track.title}
+                  width={100}
+                  height={100}
+                  className="rounded-lg w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 box-border border border-black/10 dark:border-white/10 rounded-lg pointer-events-none"></div>
+              </div>
             </div>
             <div className="flex-grow min-w-0">
               <p className="text-sm truncate">{track.title}</p>

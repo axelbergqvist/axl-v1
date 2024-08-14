@@ -34,12 +34,12 @@ const ExperienceItem = ({ role, company, date, imageSrc, link }) => {
       className="w-full flex flex-row items-center justify-between"
     >
       <motion.div className="flex flex-row items-center">
-        <div className="border border-black/10 dark:border-white/10 rounded-lg mr-3 overflow-hidden size-8">
+        {/* <div className="border border-black/10 dark:border-white/10 rounded-lg mr-3 overflow-hidden size-8">
           <Image className="object-cover" src={imageSrc} alt="Company Image" />
-        </div>
+        </div>  */}
         <div className="flex flex-col">
           <p className="text-sm">{role}</p>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">{company}</p>
+          {/*<p className="text-sm text-neutral-500 dark:text-neutral-400">{company}</p> */}
         </div>
       </motion.div>
       <p className="text-sm text-neutral-500 dark:text-neutral-400">{date}</p>
