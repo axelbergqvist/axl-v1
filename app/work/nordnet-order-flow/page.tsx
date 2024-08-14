@@ -7,6 +7,8 @@ import CustomZoomContent from '../../components/CustomZoomContent';
 import 'react-medium-image-zoom/dist/styles.css';
 import '../../custom-zoom.css';
 import CustomVideoPlayer from '../../components/CustomVideoPlayer';
+import image09 from '../../../public/09.png'; // Import the chosen image
+import Image from 'next/image';
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -59,15 +61,15 @@ export default function Page() {
     >
       {/* Fixed sidebar with anchor links */}
       <motion.div className="fixed top-40 left-16 z-10 xl:visible invisible" variants={childVariants}>
-        <ul className="space-y-2">
-          <div className="pb-6">
-            <a href="/" className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300">
+        <ul className="space-y-1">
+          <div className="mb-4">
+            <a href="/" className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300">
               ← Work
             </a>
           </div>
           {links.map((link) => (
             <li key={link.href}>
-              <a href={link.href} className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300">
+              <a href={link.href} className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors duration-300">
                 {link.text}
               </a>
             </li>
@@ -86,17 +88,39 @@ export default function Page() {
       </div>
       
       <motion.div variants={childVariants}>
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-12">
           <Zoom ZoomContent={CustomZoomContent}>
-            <div className="lg:w-[1000px] w-full mx-auto">
+            <div className="lg:w-[900px] w-full mx-auto">
               <CustomVideoPlayer src="/07.mp4" />
             </div>
           </Zoom>
         </div>
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6">
-          Amex Watch App
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          Problem
         </motion.p>
       </motion.div>
+
+      <div className="flex flex-col sm:gap-2 gap-6 mb-24">
+        <motion.p className="text-sm w-full" variants={childVariants}>
+          {`When it comes to the visual aspects of design, the framework I believe in is applying taste and collaboration to extensive iteration. For me, this often manifests as a cyclical process of analyzing my work, figuring out what parts could be improved, tweaking a value slightly, and comparing the new version to the old.`}
+          <br/><br/>
+{`To get started, I created a scene to experiment with materials and lighting. Here is the first render I produced, with annotations of what was working and what wasn't, both from my analysis and feedback. This early iteration was more about the overall feel than anything scientific.`}
+        </motion.p>
+      </div>
+
+      <div className="mb-12 w-full">
+      <Zoom ZoomContent={CustomZoomContent}>
+          <Image
+            className="mb-6 rounded-lg w-full border border-[#efefef] dark:border-neutral-800"
+            src={image09} // Use the chosen image
+            alt="Picture of me"
+            layout="responsive"
+            width={600}
+            height={400}
+          />
+        </Zoom>
+        </div>
+
     </motion.section>
   );
 }

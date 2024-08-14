@@ -97,7 +97,7 @@ export default function Page() {
         <motion.div variants={childVariants}>
           <Zoom ZoomContent={CustomZoomContent}>
             <Image
-              className="mb-6 rounded-md w-full border border-neutral-200 dark:border-neutral-800"
+              className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
               src={WorktestDark} // Use the chosen image
               alt="Work test image"
               layout="responsive"

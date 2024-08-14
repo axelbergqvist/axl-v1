@@ -63,7 +63,7 @@ const RecentlyPlayed = ({ tracks }) => {
                 alt={track.title}
                 width={32}
                 height={32}
-                className="rounded-md w-8 h-8 object-cover"
+                className="rounded-lg w-8 h-8 object-cover"
               />
             </div>
             <div className="flex-grow min-w-0">

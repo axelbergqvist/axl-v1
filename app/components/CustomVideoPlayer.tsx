@@ -1,4 +1,3 @@
-// components/CustomVideoPlayer.tsx
 'use client';  // Add this line to mark the file as a Client Component
 
 import { useRef, useState } from 'react';
@@ -37,7 +36,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src, autoPlay = t
   return (
     <div className="relative">
       <video
-        className="mb-6 rounded-md w-full border border-neutral-200 dark:border-neutral-80"
+        className="mb-6 rounded-lg w-full border border-[#efefef] dark:border-neutral-80"
         src={src}
         autoPlay={autoPlay}
         loop={loop}
@@ -45,16 +44,18 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src, autoPlay = t
         playsInline
         ref={videoRef}
       />
-      <div className="absolute top-4 right-4 flex flex-row gap-2 transition">
+      <div className="absolute top-4 right-4 flex flex-row gap-2">
         <button
           onClick={togglePlayPause}
-          className="px-2 py-0 flex items-center h-6 bg-neutral-200 text-black rounded-full hover:bg-neutral-300 text-xs transition"
+          className="flex items-center justify-center px-2 py-0 h-6 bg-neutral-200 text-black rounded-full hover:bg-neutral-300 text-xs button-transition"
+          style={{ width: isPaused ? '48px' : '56px' }} // Adjust width as needed
         >
           {isPaused ? 'Play' : 'Pause'}
         </button>
         <button
           onClick={togglePlaybackRate}
-          className={`px-4 py-2 ${isSpeedHalf ? 'bg-neutral-200' : 'bg-neutral-200'} text-black text-xs h-6 flex items-center rounded-full hover:bg-neutral-300 transition`}
+          className={`flex items-center justify-center px-4 py-2 ${isSpeedHalf ? 'bg-neutral-200' : 'bg-neutral-200'} text-black text-xs h-6 rounded-full hover:bg-neutral-300 button-transition`}
+          style={{ width: isSpeedHalf ? '44px' : '32px' }} // Adjust width as needed
         >
           {isSpeedHalf ? '0.5x' : '1x'}
         </button>

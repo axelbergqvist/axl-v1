@@ -1,8 +1,8 @@
 /* app/custom-zoom.css */
 
 :root {
-  --zoom-border-color: #e5e5e5; /* Default border color */
-  --modal-img-bg-color: #ffffff;   /* Default background color */
+  --zoom-border-color: #efefef; /* Default border color */
+  --modal-img-bg-color: #fafafa;   /* Default background color */
 }
 
 [data-rmiz-modal-img] {
@@ -14,7 +14,9 @@
   border-radius: 8px;
   background-color: var(--modal-img-bg-color);
   border: 1px solid var(--zoom-border-color);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.05);
 }
+
 
 /* Add transition properties to smoothly fade in the background blur */
 [data-rmiz-modal-overlay] {
@@ -28,7 +30,7 @@
 }
 
 [data-rmiz-modal-overlay="visible"] {
-  background-color: rgba(0, 0, 0, 0.1); /* Slightly visible background color */
+  background-color: rgba(0, 0, 0, 0.08); /* Slightly visible background color */
   -webkit-backdrop-filter: blur(10px) opacity(1);
   backdrop-filter: blur(20px); /* Apply blur effect */
   cursor: zoom-out;
@@ -38,13 +40,14 @@
   background-color: rgba(0, 0, 0, 0); /* Fully transparent background */
   -webkit-backdrop-filter: blur(0px) opacity(0);
   backdrop-filter: blur(0px); /* No blur when hidden */
+  
 }
 
 /* Dark mode specific styles */
 @media (prefers-color-scheme: dark) {
   :root {
     --zoom-border-color: #262626; /* Border color for dark mode */
-    --modal-img-bg-color: #171717;   /* Background color for dark mode */
+    --modal-img-bg-color: #191919;   /* Background color for dark mode */
   }
 }
 
