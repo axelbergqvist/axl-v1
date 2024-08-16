@@ -46,25 +46,25 @@ const RecentlyPlayed = ({ tracks }) => {
       animate="visible"
       variants={parentVariants}
     >
-      <motion.div className="grid grid-cols-2 gap-4" variants={childVariants}>
+      <motion.div className="grid grid-cols-2 gap-6" variants={childVariants}>
         {tracks.slice(0, 6).map((track) => (
           <motion.a
             key={track.songUrl}
             href={track.songUrl}
-            whileHover={{ x: 4 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            whileHover={{ x: 2 }}
+            transition={{ type: 'easeIn', duration: 0.125 }}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center cursor-pointer"
           >
             <div className="flex-shrink-0 mr-3 rounded-lg relative">
-              <div className="w-8 h-8 rounded-lg overflow-hidden relative">
+              <div className="w-10 h-10 rounded-md overflow-hidden relative">
                 <Image
                   src={track.coverImage.url}
                   alt={track.title}
                   width={100}
                   height={100}
-                  className="rounded-lg w-full h-full object-cover"
+                  className="rounded-md w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 box-border border border-black/10 dark:border-white/10 rounded-lg pointer-events-none"></div>
               </div>

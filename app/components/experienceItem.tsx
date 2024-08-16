@@ -29,7 +29,7 @@ const ExperienceItem = ({ role, company, date, imageSrc, link }) => {
       target="_blank"
       rel="noopener noreferrer"
       variants={childVariants}
-      whileHover={{ x: 4 }} // Hover animation
+      whileHover={{ x: 0 }} // Hover animation
       transition={{ type: 'spring', stiffness: 400, damping: 30 }} // Optional: Add smoothness to the animation
       className="w-full flex flex-row items-center justify-between"
     >

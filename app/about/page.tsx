@@ -73,8 +73,8 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-      <div className="flex flex-col gap-4 mb-24">
-        <motion.p className="text" variants={childVariants}>
+      <div className="flex sm:flex-row flex-col gap-4 mb-24">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           About
         </motion.p>
 
@@ -86,8 +86,8 @@ export default function Page() {
         {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
       </motion.h1>
       </div>
-      
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+
+      <div className="flex sm:flex-row flex-col gap-4 mb-20">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
           What I like
         </motion.p>
@@ -106,17 +106,7 @@ export default function Page() {
         </motion.div>
       </div>
 
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Recent tracks
-        </motion.p>
-
-        <motion.div variants={childVariants} className="flex flex-col gap-4 w-full">
-          <RecentlyPlayed tracks={recentlyPlayedTracks} />
-        </motion.div>
-      </div>
-
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-20">
+      <div className="flex s sm:flex-row flex-col gap-4 mb-20">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
           Experience
         </motion.p>
@@ -143,6 +133,16 @@ export default function Page() {
             imageSrc={Freelance}
             link="https://nordnet.com" // Example link
           />
+        </motion.div>
+      </div>
+
+      <div className="flex  sm:flex-row flex-col  gap-4 mb-20">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
+          Recent tracks
+        </motion.p>
+
+        <motion.div variants={childVariants} className="flex flex-col gap-4 w-full">
+          <RecentlyPlayed tracks={recentlyPlayedTracks} />
         </motion.div>
       </div>
 

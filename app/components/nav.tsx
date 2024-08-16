@@ -18,7 +18,7 @@ export function Navbar() {
   const pathname = usePathname();
   const isActive = (path) => path === pathname;
   return (
-    <aside className="mb-32 z-10">
+    <aside className="z-10">
       <div className="lg:sticky lg:top-1">
         <nav
           className="flex flex-col items-center relative fade md:overflow-auto scroll-pr-6 md:relative "
@@ -39,6 +39,7 @@ export function Navbar() {
           </div>
         </nav>
       </div>
+      <div className="h-32"></div>
     </aside>
   )
 }

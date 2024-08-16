@@ -95,53 +95,57 @@ export default function Page() {
           {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.`}
         </motion.h1>
         
-        <motion.div variants={childVariants}>
-          <a href="/work/nordnet-order-flow" className="">
-            <Image
-              className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
-              src={WorktestDark} // Use the chosen image
-              alt="Work test image"
-              layout="responsive"
-              width={600}
-              height={400}
-            />
-        <div className="flex flex-col mb-24">
+        <motion.div variants={childVariants} className="mb-24 w-full flex justify-center">
+  <div className="w-[900px] max-w-full">
+    <a href="/work/nordnet-order-flow" className="">
+      <Image
+        className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
+        src={WorktestDark}
+        alt="Work test image"
+        width={900}
+        height={600}
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+      <div className="flex flex-col">
         <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full mb-1">Nordnet</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full mb-1">Nordnet</p>
         </motion.div>
         <motion.p className="text-sm w-full mb-2" variants={childVariants}>
-        {`Order experience`}
+          {`Order experience`}
         </motion.p>
         <motion.p className="text-sm w-full text-neutral-500 dark:text-neutral-400" variants={childVariants}>
-        {`A extensive design system, offering a consistent set of guidelines, components, and patterns.`}
+          {`A extensive design system, offering a consistent set of guidelines, components, and patterns.`}
         </motion.p>
       </div>
-            </a>
-        </motion.div>
+    </a>
+  </div>
+</motion.div>
 
-        <motion.div variants={childVariants}>
-          <a href="/work/nordnet-order-flow" className="">
-            <Image
-              className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
-              src={WorktestDark} // Use the chosen image
-              alt="Work test image"
-              layout="responsive"
-              width={600}
-              height={400}
-            />
-        <div className="flex flex-col mb-24">
+<motion.div variants={childVariants} className="mb-24 w-full flex justify-center">
+  <div className="w-[900px] max-w-full">
+    <a href="/work/nordnet-order-flow" className="">
+      <Image
+        className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
+        src={WorktestDark}
+        alt="Work test image"
+        width={900}
+        height={600}
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+      <div className="flex flex-col">
         <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full mb-1">Nordnet</p>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full mb-1">Nordnet</p>
         </motion.div>
         <motion.p className="text-sm w-full mb-2" variants={childVariants}>
-        {`Order experience`}
+          {`Order experience`}
         </motion.p>
         <motion.p className="text-sm w-full text-neutral-500 dark:text-neutral-400" variants={childVariants}>
-        {`A extensive design system, offering a consistent set of guidelines, components, and patterns.`}
+          {`A extensive design system, offering a consistent set of guidelines, components, and patterns.`}
         </motion.p>
       </div>
-            </a>
-        </motion.div>
+    </a>
+  </div>
+</motion.div>
 
       </motion.section>
       <Confetti /> {/* Render the Confetti component */}

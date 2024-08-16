@@ -52,8 +52,8 @@ export default function Page() {
       initial="hidden"
       animate="visible"
     >
-        <div className="flex flex-col gap-4 mb-24">
-        <motion.div className="text" variants={childVariants}>
+        <div className="flex sm:flex-row flex-col gap-4 mb-24">
+        <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
         <ScrambleText text="Lab" className="text" />
         </motion.div>
 
@@ -80,7 +80,7 @@ export default function Page() {
       <motion.div variants={childVariants}>
         <Zoom ZoomContent={CustomZoomContent}>
           <Image
-            className="mb-6 rounded-lg w-full border border-neutral-200 dark:border-neutral-800"
+            className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-[#191919] border-[#efefef] dark:border-neutral-800"
             src={Worktest2} // Use the chosen image
             alt="Picture of me"
             layout="responsive"

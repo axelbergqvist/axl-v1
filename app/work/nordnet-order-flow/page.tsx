@@ -60,7 +60,6 @@ export default function Page() {
       animate="visible"
     >
       {/* Fixed sidebar with anchor links */}
-      {/*}
       <motion.div className="fixed top-40 left-12 z-10 xl:visible invisible" variants={childVariants}>
         <ul className="space-y-1">
           <div className="mb-4">
@@ -77,9 +76,8 @@ export default function Page() {
           ))}
         </ul>
       </motion.div>
-      //*/}
 
-      <div className="flex flex-col mb-10">
+      <div className="flex flex-col mb-16">
         <motion.div className="text mb-4" variants={childVariants}>
           <p>Nordnet Order</p>
         </motion.div>
@@ -90,7 +88,7 @@ export default function Page() {
       </div>
       
       <motion.div variants={childVariants}>
-        <div className="lg:w-[800px]flex justify-center mx-auto mb-10">
+        <div className="lg:w-[800px]flex justify-center mx-auto mb-16">
               <CustomVideoPlayer src="/07.mp4" />
         </div>
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
@@ -98,7 +96,7 @@ export default function Page() {
         </motion.p>
       </motion.div>
 
-      <div className="flex flex-col sm:gap-2 gap-6 mb-10">
+      <div className="flex flex-col sm:gap-2 gap-6 mb-16">
         <motion.p className="text-sm w-full" variants={childVariants}>
           {`When it comes to the visual aspects of design, the framework I believe in is applying taste and collaboration to extensive iteration. For me, this often manifests as a cyclical process of analyzing my work, figuring out what parts could be improved, tweaking a value slightly, and comparing the new version to the old.`}
           <br/><br/>
