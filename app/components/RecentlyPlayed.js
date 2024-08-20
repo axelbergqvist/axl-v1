@@ -58,7 +58,7 @@ const RecentlyPlayed = ({ tracks }) => {
             className="flex items-center cursor-pointer"
           >
             <div className="flex-shrink-0 mr-3 rounded-lg relative">
-              <div className="w-10 h-10 rounded-md overflow-hidden relative">
+              <div className="w-9 h-9 rounded-md overflow-hidden relative">
                 <Image
                   src={track.coverImage.url}
                   alt={track.title}
@@ -66,7 +66,7 @@ const RecentlyPlayed = ({ tracks }) => {
                   height={100}
                   className="rounded-md w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 box-border border border-black/10 dark:border-white/10 rounded-lg pointer-events-none"></div>
+                <div className="absolute inset-0 box-border border border-black/10 dark:border-white/15 rounded-md pointer-events-none"></div>
               </div>
             </div>
             <div className="flex-grow min-w-0">

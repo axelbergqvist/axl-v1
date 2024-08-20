@@ -22,11 +22,9 @@ const childVariants = {
   },
 };
 
-const ExperienceItem = ({ role, company, date, imageSrc, link }) => {
+const ExperienceItem = ({ role, company, date, imageSrc,}) => {
   return (
-    <motion.a
-      href={link}
-      target="_blank"
+    <motion.div
       rel="noopener noreferrer"
       variants={childVariants}
       whileHover={{ x: 0 }} // Hover animation
@@ -43,7 +41,7 @@ const ExperienceItem = ({ role, company, date, imageSrc, link }) => {
         </div>
       </motion.div>
       <p className="text-sm text-neutral-500 dark:text-neutral-400">{date}</p>
-    </motion.a>
+    </motion.div>
   );
 };
 

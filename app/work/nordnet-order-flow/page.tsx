@@ -58,8 +58,8 @@ export default function Page() {
       variants={parentVariants}
       initial="hidden"
       animate="visible"
-    >
-      {/* Fixed sidebar with anchor links */}
+      >
+      {/* Fixed sidebar with anchor links
       <motion.div className="fixed top-40 left-12 z-10 xl:visible invisible" variants={childVariants}>
         <ul className="space-y-1">
           <div className="mb-4">
@@ -76,6 +76,7 @@ export default function Page() {
           ))}
         </ul>
       </motion.div>
+*/}
 
       <div className="flex flex-col mb-16">
         <motion.div className="text mb-4" variants={childVariants}>

@@ -2,7 +2,6 @@ export default function Footer() {
   return (
     <footer className="my-16">
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-8">
-        It's currently 05:10 AM in Stockholm, Sweden. The weather is Partly Cloudy with a temperature of 24.6°C.
         </p>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
           Reach out

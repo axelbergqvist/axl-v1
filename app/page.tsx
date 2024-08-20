@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import profilepic from 'public/profilepic.png';
-import WorktestDark from '/public/01.png';
+import WorktestDark from '/public/02.png';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import './image-zoom.css';
@@ -91,12 +91,12 @@ export default function Page() {
         </motion.div>
         <motion.p className="text-sm mb-0.5" variants={childVariants}>Axel Bergqvist</motion.p>
         <motion.p className="text-sm mb-6 text-neutral-500 dark:text-neutral-400" variants={childVariants}>Product Designer</motion.p>
-        <motion.h1 className="text mb-24" variants={childVariants}>
-          {`I’m a design engineer based in Vancouver, BC. I’m passionate about building delightful user interfaces that feel intuitive for everyone.`}
+        <motion.h1 className="text-sm mb-24" variants={childVariants}>
+          {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ligula est, gravida ac ex id, iaculis tempor nisl. Proin ac quam vitae diam accumsan tincidunt quis vel nisl.`}
         </motion.h1>
         
-        <motion.div variants={childVariants} className="mb-24 w-full flex justify-center">
-  <div className="w-[900px] max-w-full">
+<motion.div variants={childVariants} className="mb-24 w-full flex justify-center">
+  <div className="w-[900px] max-w-full mx-auto">
     <a href="/work/nordnet-order-flow" className="">
       <Image
         className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
@@ -107,9 +107,6 @@ export default function Page() {
         style={{ maxWidth: '100%', height: 'auto' }}
       />
       <div className="flex flex-col">
-        <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full mb-1">Nordnet</p>
-        </motion.div>
         <motion.p className="text-sm w-full mb-2" variants={childVariants}>
           {`Order experience`}
         </motion.p>
@@ -121,8 +118,8 @@ export default function Page() {
   </div>
 </motion.div>
 
-<motion.div variants={childVariants} className="mb-24 w-full flex justify-center">
-  <div className="w-[900px] max-w-full">
+<motion.div variants={childVariants} className="mb-24w-full flex justify-center">
+  <div className="w-[900px] max-w-full mx-auto">
     <a href="/work/nordnet-order-flow" className="">
       <Image
         className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
@@ -133,9 +130,6 @@ export default function Page() {
         style={{ maxWidth: '100%', height: 'auto' }}
       />
       <div className="flex flex-col">
-        <motion.div className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 w-full mb-1">Nordnet</p>
-        </motion.div>
         <motion.p className="text-sm w-full mb-2" variants={childVariants}>
           {`Order experience`}
         </motion.p>
