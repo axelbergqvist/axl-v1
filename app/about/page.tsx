@@ -117,21 +117,18 @@ export default function Page() {
             company="Nordnet"
             date="2022 – Now"
             imageSrc={Nordnet}
-            link="https://nordnet.com" // Example link
           />
           <ExperienceItem
             role="UX Designer at Kumpan"
             company="Kumpan"
             date="2021"
             imageSrc={Kumpan}
-            link="https://nordnet.com" // Example link
           />
           <ExperienceItem
             role="UX & Graphic Designer at Freelance"
             company="Freelance"
             date="2016 – 2021"
             imageSrc={Freelance}
-            link="https://nordnet.com" // Example link
           />
         </motion.div>
       </div>
