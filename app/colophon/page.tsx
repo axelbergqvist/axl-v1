@@ -49,7 +49,7 @@ export default function Page() {
 
   return (
     <motion.section
-      className="p-0"
+      className="p-0 max-w-screen-sm mx-auto"
       variants={parentVariants}
       initial="hidden"
       animate="visible"

@@ -78,7 +78,7 @@ export default function Page() {
       </motion.div>
 */}
 
-      <div className="flex flex-col mb-16">
+      <div className="flex flex-col mb-1 max-w-screen-sm mx-auto w-full">
         <motion.div className="text mb-4" variants={childVariants}>
           <p>Nordnet Order</p>
         </motion.div>
@@ -89,15 +89,15 @@ export default function Page() {
       </div>
       
       <motion.div variants={childVariants}>
-        <div className="lg:w-[800px]flex justify-center mx-auto mb-16">
+        <div className="w-[1000px] max-w-full mx-auto my-16">
               <CustomVideoPlayer src="/07.mp4" />
         </div>
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-          Problem
-        </motion.p>
       </motion.div>
 
-      <div className="flex flex-col sm:gap-2 gap-6 mb-16">
+      <div className="flex flex-col sm:gap-2 gap-6 mb-16 max-w-screen-sm mx-auto w-full">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2" variants={childVariants}>
+          Problem
+        </motion.p>
         <motion.p className="text-sm w-full" variants={childVariants}>
           {`When it comes to the visual aspects of design, the framework I believe in is applying taste and collaboration to extensive iteration. For me, this often manifests as a cyclical process of analyzing my work, figuring out what parts could be improved, tweaking a value slightly, and comparing the new version to the old.`}
           <br/><br/>
@@ -105,7 +105,7 @@ export default function Page() {
         </motion.p>
       </div>
 
-      <div className="mb-12 w-full">
+      <div className="mb-12 w-[1000px] max-w-full mx-auto">
       <Zoom ZoomContent={CustomZoomContent}>
           <Image
             className="mb-6 rounded-lg w-full border border-[#efefef] dark:border-neutral-800"

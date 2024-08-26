@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="my-16">
+    <footer className="my-16 max-w-screen-sm mx-auto w-full">
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-8">
         </p>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">

@@ -68,7 +68,7 @@ export default function Page() {
 
   return (
     <motion.section
-      className="p-0"
+      className="p-0 max-w-screen-sm mx-auto"
       variants={parentVariants}
       initial="hidden"
       animate="visible"
@@ -82,6 +82,10 @@ export default function Page() {
         {`I am a designer currently shaping the native mobile apps at Linear and crafting app icons for a variety of clients.`}
         <br /> <br />
         {`I focus on the intersection of form and function to create experiences that effortlessly become an extension of oneself. I believe in ideas over opinions, prototypes as the most valuable tool for collaboration, and exploring one hundred ideas to find the right one.`}
+        <br /> <br />
+        {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
+        <br /> <br />
+        {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
         <br /> <br />
         {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
       </motion.h1>

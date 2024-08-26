@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        'sm': '15px', // Custom font size for text-sm
+        'sm': '14px', // Custom font size for text-sm
         'xs': '12px', // Custom font size for text-xs
       },
       boxShadow: {

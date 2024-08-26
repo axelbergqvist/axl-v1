@@ -55,7 +55,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         {/* You can add more metadata here if needed */}
       </Head>
-      <body className={`max-w-screen-sm mx-2 mt-6 sm:mx-auto overflow-visible ${GeistSans.className}`}>
+      <body className={` mx-2 mt-6 sm:mx-auto overflow-visible ${GeistSans.className}`}>
         <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible">
           <Navbar />
           {children}

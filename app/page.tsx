@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import profilepic from 'public/profilepic.png';
-import WorktestDark from '/public/02.png';
+import WorktestDark from '/public/worktest6.png';
+import WorktestDark2 from '/public/worktest7.webp';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import './image-zoom.css';
@@ -75,6 +76,7 @@ export default function Page() {
         animate="visible"
       >
         <motion.div variants={childVariants}>
+        <motion.div variants={childVariants} className="max-w-screen-sm mx-auto">
           <motion.div
             initial={{ scale: 1 }}
             whileHover={{ scale: 0.95 }}
@@ -88,58 +90,71 @@ export default function Page() {
               className="h-16 w-16"
             />
           </motion.div>
+
         </motion.div>
-        <motion.p className="text-sm mb-0.5" variants={childVariants}>Axel Bergqvist</motion.p>
-        <motion.p className="text-sm mb-6 text-neutral-500 dark:text-neutral-400" variants={childVariants}>Product Designer</motion.p>
-        <motion.h1 className="text-sm mb-24" variants={childVariants}>
+        </motion.div>
+
+        <motion.p className="text-sm mb-0.5 max-w-screen-sm mx-auto" variants={childVariants}>Axel Bergqvist</motion.p>
+        <motion.p className="text-sm mb-6 text-neutral-500 dark:text-neutral-400 max-w-screen-sm mx-auto" variants={childVariants}>Product Designer</motion.p>
+        <motion.h1 className="text-sm mb-24 max-w-screen-sm mx-auto" variants={childVariants}>
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ligula est, gravida ac ex id, iaculis tempor nisl. Proin ac quam vitae diam accumsan tincidunt quis vel nisl.`}
         </motion.h1>
-        
-<motion.div variants={childVariants} className="mb-24 w-full flex justify-center">
-  <div className="w-[900px] max-w-full mx-auto">
+<motion.div variants={childVariants} className="mb-24 ">
+  <div className="">
     <a href="/work/nordnet-order-flow" className="">
       <Image
-        className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
-        src={WorktestDark}
+        className="w-[960px] max-w-full mx-auto mb-6 rounded-lg border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
+        src={WorktestDark2}
         alt="Work test image"
         width={900}
         height={600}
         style={{ maxWidth: '100%', height: 'auto' }}
       />
-      <div className="flex flex-col">
-        <motion.p className="text-sm w-full mb-2" variants={childVariants}>
-          {`Order experience`}
-        </motion.p>
-        <motion.p className="text-sm w-full text-neutral-500 dark:text-neutral-400" variants={childVariants}>
-          {`A extensive design system, offering a consistent set of guidelines, components, and patterns.`}
-        </motion.p>
-      </div>
     </a>
+        <div className="flex sm:flex-row flex-col gap-2 mb-20 max-w-screen-sm mx-auto">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          2023
+        </motion.p>
+        <motion.div className="flex flex-row gap-2 w-full">
+          <motion.div className="flex flex-col gap-2 w-full">
+          <a href="/work/nordnet-order-flow" className="">
+            <motion.p className="text-sm" variants={childVariants}>Nordnet order experience</motion.p>
+            </a>
+            <motion.p className="text-sm text-neutral-500 dark:text-neutral-400" variants={childVariants}>UI Kit is a pixel-perfect Figma design system made for complex products. It gathers carefully crafted classic components such as buttons, dropdowns or text fields as well as more technical components such as tree viewers, rich text editors and complex tables.</motion.p>
+          </motion.div>
+        </motion.div>
+      </div>
   </div>
 </motion.div>
 
-<motion.div variants={childVariants} className="mb-24w-full flex justify-center">
-  <div className="w-[900px] max-w-full mx-auto">
+<motion.div variants={childVariants} className="mb-24 ">
+  <div className="">
     <a href="/work/nordnet-order-flow" className="">
       <Image
-        className="mb-6 rounded-lg w-full border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
+        className="w-[960px] max-w-full mx-auto mb-6 rounded-lg border bg-neutral-50 dark:bg-neutral-900 border-[#efefef] dark:border-neutral-800"
         src={WorktestDark}
         alt="Work test image"
         width={900}
         height={600}
         style={{ maxWidth: '100%', height: 'auto' }}
       />
-      <div className="flex flex-col">
-        <motion.p className="text-sm w-full mb-2" variants={childVariants}>
-          {`Order experience`}
-        </motion.p>
-        <motion.p className="text-sm w-full text-neutral-500 dark:text-neutral-400" variants={childVariants}>
-          {`A extensive design system, offering a consistent set of guidelines, components, and patterns.`}
-        </motion.p>
-      </div>
     </a>
+        <div className="flex sm:flex-row flex-col gap-2 mb-20 max-w-screen-sm mx-auto">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          2023
+        </motion.p>
+        <motion.div className="flex flex-row gap-4 w-full">
+          <motion.div className="flex flex-col gap-2 w-full">
+          <a href="/work/nordnet-order-flow" className="">
+            <motion.p className="text-sm" variants={childVariants}>Nordnet order experience</motion.p>
+            </a>
+            <motion.p className="text-sm text-neutral-500 dark:text-neutral-400" variants={childVariants}>UI Kit is a pixel-perfect Figma design system made for complex products. It gathers carefully crafted classic components such as buttons, dropdowns or text fields as well as more technical components such as tree viewers, rich text editors and complex tables.</motion.p>
+          </motion.div>
+        </motion.div>
+      </div>
   </div>
 </motion.div>
+
 
       </motion.section>
       <Confetti /> {/* Render the Confetti component */}
