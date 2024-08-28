@@ -8,8 +8,8 @@ import CustomZoomContent from '../components/CustomZoomContent';
 import 'react-medium-image-zoom/dist/styles.css';
 import '../image-zoom.css';
 import '../custom-zoom.css';
-import WorktestDark from '/public/worktest3-dark.png'; // Import the dark mode image
-import Worktest2 from '/public/worktest4-dark.png'
+import WorktestDark from '/public/worktest3.png'; // Import the dark mode image
+import Worktest2 from '/public/worktest4-light.png'
 
 const parentVariants = {
   hidden: { opacity: 0 },

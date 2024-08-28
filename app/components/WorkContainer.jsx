@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'; // Optional, for runtime type checking
 
 const WorkContainer = ({ year, imageSrc, title, description, childVariants, children }) => {
   return (
-    <motion.div variants={childVariants} className="mb-24 w-fit mx-auto">
+    <motion.div variants={childVariants} className="mb-16 w-fit mx-auto">
       <div>
         <a href="/work/nordnet-order-flow" className="">
           <motion.div
@@ -26,7 +26,7 @@ const WorkContainer = ({ year, imageSrc, title, description, childVariants, chil
             />
           </motion.div>
         </a>
-        <div className="flex sm:flex-row flex-col gap-2 mb-20 max-w-screen-sm mx-auto">
+        <div className="flex sm:flex-row flex-col gap-2 mb-12 max-w-screen-sm mx-auto">
           <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
             {year}
           </motion.p>
