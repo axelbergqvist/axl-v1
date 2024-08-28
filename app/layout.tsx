@@ -56,7 +56,7 @@ export default function RootLayout({
         {/* You can add more metadata here if needed */}
       </Head>
       <body className={` mx-2 mt-6 sm:mx-auto overflow-visible ${GeistSans.className}`}>
-        <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible">
+        <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible antialiased	">
           <Navbar />
           {children}
           <Footer />

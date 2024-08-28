@@ -18,8 +18,8 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        'sm': '14px', // Custom font size for text-sm
-        'xs': '12px', // Custom font size for text-xs
+        'sm': '15px', // Custom font size for text-sm
+        'xs': '13px', // Custom font size for text-xs
       },
       boxShadow: {
         'inner-red': 'inset 0 0 0 1px red',

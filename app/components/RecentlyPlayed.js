@@ -46,7 +46,7 @@ const RecentlyPlayed = ({ tracks }) => {
       animate="visible"
       variants={parentVariants}
     >
-      <motion.div className="grid grid-cols-2 gap-6" variants={childVariants}>
+      <motion.div className="grid grid-cols-2 gap-4" variants={childVariants}>
         {tracks.slice(0, 6).map((track) => (
           <motion.a
             key={track.songUrl}

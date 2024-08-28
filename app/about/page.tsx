@@ -79,36 +79,18 @@ export default function Page() {
         </motion.p>
 
       <motion.h1 className="text-sm w-full" variants={childVariants}>
-        {`I am a designer currently shaping the native mobile apps at Linear and crafting app icons for a variety of clients.`}
+        {`I am an independent designer who loves to build clear and user-friendly products.`}
         <br /> <br />
-        {`I focus on the intersection of form and function to create experiences that effortlessly become an extension of oneself. I believe in ideas over opinions, prototypes as the most valuable tool for collaboration, and exploring one hundred ideas to find the right one.`}
+        {`I started studying design in 2015, learning something new every day and then experimenting with it.`}
         <br /> <br />
-        {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
+        {`In 2019 I started my own business as an independent designer.`}
         <br /> <br />
-        {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
+        {`Over the years I have also enjoyed co-founding companies dealing with the creative side and front-end development.`}
         <br /> <br />
-        {`I am driven by curiosity and strive for a high level of craftsmanship and excellence in my work.`}
+        {`I'm also obsessed with aligning every single pixel, but it's not really an obsession, it's just about getting the job done right.`}
       </motion.h1>
       </div>
-
-      <div className="flex sm:flex-row flex-col gap-4 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
-          What I like
-        </motion.p>
-        <motion.div className="flex flex-row gap-4 w-full">
-          <motion.div className="flex flex-col gap-4 w-full">
-            <motion.p className="text-sm" variants={childVariants}>Delightful interactions</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Typography</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Organized files</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Motion design</motion.p>
-          </motion.div>
-          <motion.div className="flex flex-col gap-4 w-full">
-            <motion.p className="text-sm" variants={childVariants}>Data-driven design</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Clear communication</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Teamwork</motion.p>
-          </motion.div>
-        </motion.div>
-      </div>
+        {/*
 
       <div className="flex s sm:flex-row flex-col gap-4 mb-20">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
@@ -136,6 +118,27 @@ export default function Page() {
           />
         </motion.div>
       </div>
+        */}
+
+      <div className="flex sm:flex-row flex-col gap-4 mb-20">
+        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
+          What I like
+        </motion.p>
+        <motion.div className="flex flex-row gap-4 w-full">
+          <motion.div className="flex flex-col gap-4 w-full">
+            <motion.p className="text-sm" variants={childVariants}>Delightful interactions</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Typography</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Organized files</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Motion design</motion.p>
+          </motion.div>
+          <motion.div className="flex flex-col gap-4 w-full">
+            <motion.p className="text-sm" variants={childVariants}>Data-driven design</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Clear communication</motion.p>
+            <motion.p className="text-sm" variants={childVariants}>Teamwork</motion.p>
+          </motion.div>
+        </motion.div>
+      </div>
+
 
       <div className="flex  sm:flex-row flex-col  gap-4 mb-20">
         <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
