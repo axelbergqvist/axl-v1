@@ -1,15 +1,23 @@
-// app/components/ClientOnlyWrapper.js
-'use client'; // This directive makes this component a client component
+'use client'
 
-import { QueryClientProvider } from '@tanstack/react-query';
-import queryClient from '@/lib/queryClient'; // Adjust the import path as needed
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
-const ClientOnlyWrapper = ({ children }) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
-  );
-};
+export default function ClientOnlyWrapper({ children }) {
+  const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
 
-export default ClientOnlyWrapper;
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (mounted) {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, mounted])
+
+  if (!mounted) return null
+
+  return <>{children}</>
+}

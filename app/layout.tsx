@@ -6,7 +6,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
-import Head from 'next/head'; // Import Head component
+import ClientOnlyWrapper from './components/ClientOnlyWrapper'
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
@@ -51,18 +51,16 @@ export default function RootLayout({
         `${GeistSans.variable} ${GeistMono.variable}`
       )}
     >
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        {/* You can add more metadata here if needed */}
-      </Head>
-      <body className={` mx-2 mt-6 sm:mx-auto overflow-visible ${GeistSans.className}`}>
-        <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible antialiased	">
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+      <body className={`mx-2 mt-6 sm:mx-auto overflow-visible ${GeistSans.className}`}>
+        <ClientOnlyWrapper>
+          <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible antialiased">
+            <Navbar />
+            {children}
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </main>
+        </ClientOnlyWrapper>
       </body>
     </html>
   )

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types'; // Optional, for runtime type checking
 
-const WorkContainer = ({ year, imageSrc, title, description, childVariants, children }) => {
+const WorkContainer = ({ year, imageSrc, videoSrc, title, description, childVariants, children }) => {
   return (
     <motion.div variants={childVariants} className="mb-16 w-fit mx-auto">
       <div>
@@ -16,14 +16,26 @@ const WorkContainer = ({ year, imageSrc, title, description, childVariants, chil
             whileHover={{ y: -4 }}
             transition={{ type: 'easeIn', duration: 0.2 }}
           >
-            <Image
-              className="w-[960px] mx-auto mb-8 rounded-lg border bg-neutral-50 dark:bg-[#191919] border-[#efefef] dark:border-neutral-800"
-              src={imageSrc}
-              alt="Work test image"
-              width={900}
-              height={600}
-              style={{ maxWidth: '100%', height: 'auto' }}
-            />
+            {imageSrc ? (
+              <Image
+                className="w-[960px] mx-auto mb-6 rounded-lg border bg-neutral-50 dark:bg-[#191919] border-[#efefef] dark:border-neutral-800"
+                src={imageSrc}
+                alt="Work test image"
+                width={900}
+                height={600}
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            ) : videoSrc ? (
+              <video
+                className="w-[960px] mx-auto mb-8 rounded-lg border bg-neutral-50 dark:bg-[#191919] border-[#efefef] dark:border-neutral-800"
+                src={videoSrc}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            ) : null}
           </motion.div>
         </a>
         <div className="flex sm:flex-row flex-col gap-2 mb-12 max-w-screen-sm mx-auto">
@@ -32,11 +44,11 @@ const WorkContainer = ({ year, imageSrc, title, description, childVariants, chil
           </motion.p>
           <motion.div className="flex flex-row gap-2 w-full">
             <motion.div className="flex flex-col gap-2 w-full">
-            <a href="/work/nordnet-order-flow" className="no-underline hover:underline">
-  <motion.p className="text-sm" variants={childVariants}>
-    {title}
-  </motion.p>
-</a>
+              <a href="/work/nordnet-order-flow" className="no-underline hover:underline">
+                <motion.p className="text-sm" variants={childVariants}>
+                  {title}
+                </motion.p>
+              </a>
               <motion.p className="text-sm text-neutral-500 dark:text-neutral-400" variants={childVariants}>
                 {description}
               </motion.p>
@@ -61,7 +73,8 @@ WorkContainer.propTypes = {
       height: PropTypes.number,
       width: PropTypes.number,
     })
-  ]).isRequired,
+  ]),
+  videoSrc: PropTypes.string, // New prop type for video
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   childVariants: PropTypes.object,

@@ -30,6 +30,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
+                  scroll={true} // This ensures the page scrolls to the top on navigation
                   className={`transition-all duration-300 text-xs ${isActive(path) ? 'text-white' : 'text-neutral-400 dark:text-neutral-400'} ${isActive(path) ? '' : 'hover:text-neutral-500 dark:hover:text-neutral-40'} align-middle`}
                 >
                   {name}
