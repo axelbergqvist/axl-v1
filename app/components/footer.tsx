@@ -1,29 +1,53 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export default function Footer() {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const stockholmTime = now.toLocaleTimeString('en-US', {
+        timeZone: 'Europe/Stockholm',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      });
+      setTime(stockholmTime);
+    };
+
+    // Update immediately
+    updateTime();
+
+    // Update every second
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <footer className="my-16 max-w-screen-sm mx-auto w-full">
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-8">
+    <footer className="px-4 pb-4 pt-16 flex items-center mx-auto w-full">
+        <p className="w-full text-sm text-neutral-500 dark:text-neutral-400">
+          ©2026 Axel Bergqvist
         </p>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">
-          Reach out
+        <div className="flex w-full gap-2">
+        <p className="text-right w-full text-sm text-neutral-900 dark:text-neutral-400 tabular-nums">
+          {time || '00:00:00 AM'}
         </p>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+        <p className="text-left w-full text-sm text-neutral-500 dark:text-neutral-400">
+          Stockholm, Sweden
+        </p>
+        </div>
+        <a
+            className="w-full text-right transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://vercel.com/templates/next.js/portfolio-starter-kit"
+            href="mailto:axelbergqvist@live.se"
           >
             <p className="text-sm">axelbergqvist@live.se</p>
-          </a>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-400"></p>
-      <div className="flex flex-row w-full justify-between items-end">
-      <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            href="/colophon"
-          >
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">View colophon</p>
-          </a>
-      </div>
+        </a>
     </footer>
   )
 }
