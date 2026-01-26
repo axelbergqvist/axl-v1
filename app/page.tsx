@@ -100,7 +100,7 @@ export default function Page() {
           Axel Bergqvist
         </motion.p>
         <motion.p className="text-sm mb-6 text-neutral-500 dark:text-neutral-400 max-w-screen-sm mx-auto" variants={childVariants}>
-          Product Designer
+          Product Design King
         </motion.p>
         <motion.h1 className="text-sm mb-24 max-w-screen-sm mx-auto" variants={childVariants}>
           {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ligula est, gravida ac ex id, iaculis tempor nisl. Proin ac quam vitae diam accumsan tincidunt quis vel nisl.`}
@@ -118,7 +118,7 @@ export default function Page() {
       <WorkContainer
         year="2024"
         imageSrc={WorktestDark4} // Use the imported image
-        title="Dissect.com"
+        title="Dissect.design"
         description="UI Kit is a pixel-perfect Figma design system made for complex products. It gathers carefully crafted classic components."
         childVariants={childVariants}
         >
