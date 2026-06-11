@@ -101,7 +101,7 @@ export default function Page() {
 
 return (
   <div className="flex items-center justify-center min-h-screen">
-    <p className="text-xl text-neutral-400">Hello</p>
+    <p className="text-xl text-neutral-400">Hej</p>
   </div>
 );
 }
