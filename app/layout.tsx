@@ -47,19 +47,19 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-neutral-900 overflow-visible',
+        'text-black bg-neutral-50 dark:text-white dark:bg-neutral-900 overflow-visible',
         `${GeistSans.variable} ${GeistMono.variable}`
       )}
     >
-      <body className={`mx-2 mt-6 sm:mx-auto overflow-visible ${GeistSans.className}`}>
+      <body className={`mx-2 mt-0  sm:mx-auto overflow-visible ${GeistSans.className}`}>
         <ClientOnlyWrapper>
-          <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible antialiased">
-            <Navbar />
-            {children}
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </main>
+<main className="flex-auto min-w-0 flex flex-col px-20 md:px-0 overflow-visible antialiased">
+  {/* <Navbar /> */}
+  {children}
+  {/* <Footer /> */}
+  <Analytics />
+  <SpeedInsights />
+</main>
         </ClientOnlyWrapper>
       </body>
     </html>
