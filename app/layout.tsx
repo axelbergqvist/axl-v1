@@ -1,6 +1,4 @@
 import './global.css'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -46,20 +44,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        'text-black bg-neutral-50 dark:text-white dark:bg-neutral-900 overflow-visible',
-        `${GeistSans.variable} ${GeistMono.variable}`
-      )}
+      className="text-black bg-[#fcfcfc] dark:text-white dark:bg-neutral-900 overflow-visible"
     >
-      <body className={`mx-2 mt-0  sm:mx-auto overflow-visible ${GeistSans.className}`}>
+      <body className="ml-[-8px] mr-2 mt-6 sm:mx-auto overflow-visible">
         <ClientOnlyWrapper>
-<main className="flex-auto min-w-0 flex flex-col px-20 md:px-0 overflow-visible antialiased">
-  {/* <Navbar /> */}
-  {children}
-  {/* <Footer /> */}
-  <Analytics />
-  <SpeedInsights />
-</main>
+          <main className="flex-auto min-w-0 flex flex-col px-2 md:px-0 overflow-visible antialiased">
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </main>
         </ClientOnlyWrapper>
       </body>
     </html>

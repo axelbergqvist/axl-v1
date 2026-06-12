@@ -1,197 +1,318 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import ExperienceItem from '../components/experienceItem'; // Adjust path as necessary
-import RecentlyPlayed from '../components/RecentlyPlayed'; // Import the RecentlyPlayed component
+import { motion, AnimatePresence, useSpring } from 'framer-motion';
+import { useState, useRef, useCallback } from 'react';
+import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
+
 import Nordnet from '/public/Nordnet.png';
 import Kumpan from '/public/kumpan.png';
 import Freelance from '/public/Freelance.png';
 import Brobygrafiska from '/public/brobygrafiska.png';
 import Berghs from '/public/berghs.png';
-import Dissect from '/public/dissect.png';
-import About from '/public/about.png';
-import Image from 'next/image';
 
+
+// ─── DATA ─────────────────────────────────────────────────────────────────────
+type Project = {
+  title: string;
+  description: string;
+  href?: string;
+  slug?: string;
+  image: StaticImageData;
+};
+
+type YearGroup = {
+  year: string;
+  projects: Project[];
+};
+
+const archive: YearGroup[] = [
+  {
+    year: '2026',
+    projects: [
+      { title: 'Eaves', description: 'See what top investors, fund managers and politicians are buying and selling.', slug: 'eaves', image: Nordnet },
+      { title: 'Side project', description: 'Brand & web', image: Freelance },
+    ],
+  },
+  {
+    year: '2025',
+    projects: [
+      { title: 'Nordnet', description: 'Product designer', href: '#', image: Nordnet },
+      { title: 'Kumpan', description: 'UX designer', href: '#', image: Kumpan },
+    ],
+  },
+  {
+    year: '2022',
+    projects: [
+      { title: 'Berghs', description: 'UX & Digital Product Design', image: Berghs },
+      { title: 'Brobygrafiska', description: 'Digital Design', image: Brobygrafiska },
+    ],
+  },
+];
+
+// ─── SOUND — subtle Apple-style click ─────────────────────────────────────────
+function useHoverSound() {
+  const ctx = useRef<AudioContext | null>(null);
+
+  return useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (!ctx.current) ctx.current = new AudioContext();
+    const ac = ctx.current;
+
+    const buf = ac.createBuffer(1, ac.sampleRate * 0.06, ac.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      const t = i / ac.sampleRate;
+      const env = Math.exp(-t * 180);
+      data[i] = env * (Math.sin(2 * Math.PI * 200 * t) * 0.4 + Math.sin(2 * Math.PI * 1800 * t) * 0.15) * 0.07;
+    }
+
+    const src = ac.createBufferSource();
+    src.buffer = buf;
+    src.connect(ac.destination);
+    src.start();
+  }, []);
+}
+
+// ─── HOVER ROW ──────────────────────────────────────────────────────────────
+function HoverRow({
+  project,
+  onHover,
+  onLeave,
+  onMove,
+  onHoverStart,
+  onHoverEnd,
+  onPressStart,
+  onPressEnd,
+  isHovered,
+}: {
+  project: Project;
+  onHover: (el: HTMLDivElement, img: StaticImageData) => void;
+  onLeave: () => void;
+  onMove: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
+  onPressStart: () => void;
+  onPressEnd: () => void;
+  isHovered: boolean;
+}) {
+  const playSound = useHoverSound();
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!rowRef.current || !isHovered) return;
+    onMove(e);
+  };
+
+  const handleEnter = () => {
+    if (rowRef.current) onHover(rowRef.current, project.image);
+    onHoverStart();
+    playSound();
+  };
+
+  const handleLeave = () => {
+    onLeave();
+    onHoverEnd();
+  };
+
+  const row = (
+    <div ref={rowRef} className="relative">
+      <motion.div
+        className="relative flex flex-col px-3 py-3 cursor-pointer"
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+        onMouseMove={handleMouseMove}
+        onPointerDown={onPressStart}
+        onPointerUp={onPressEnd}
+        onPointerCancel={onPressEnd}
+        onTapStart={onPressStart}
+        onTapCancel={onPressEnd}
+        onTap={onPressEnd}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+      >
+        <span className="text-[15px] font-medium text-[#666666]">
+          {project.title}
+        </span>
+        <span className="text-[15px] text-[#999999]">
+          {project.description}
+        </span>
+      </motion.div>
+    </div>
+  );
+
+  if (project.slug) {
+    return (
+      <Link href={`/about/${project.slug}`} className="block">
+        {row}
+      </Link>
+    );
+  }
+
+  return project.href ? (
+    <a href={project.href} target="_blank" rel="noopener noreferrer" className="block">
+      {row}
+    </a>
+  ) : (
+    row
+  );
+}
+
+// ─── PAGE ─────────────────────────────────────────────────────────────────────
 const parentVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.05,
-      type: 'spring',
-      stiffness: 100,
-      damping: 10,
-    },
-  },
+  visible: { opacity: 1, transition: { duration: 0.4, staggerChildren: 0.07 } },
 };
 
 const childVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    filter: 'blur(10px)',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.5,
-      type: 'spring',
-      stiffness: 400,
-      damping: 90,
-    },
-  },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35 } },
 };
 
 export default function Page() {
-  const [recentlyPlayedTracks, setRecentlyPlayedTracks] = useState([]);
+  const [hoveredImage, setHoveredImage] = useState<StaticImageData | null>(null);
+  const [imageTop, setImageTop] = useState(0);
+  const [hoveredRowTop, setHoveredRowTop] = useState(0);
+  const [hoveredRowHeight, setHoveredRowHeight] = useState(0);
+  const [hoveredRowWidth, setHoveredRowWidth] = useState(0);
+  const [hoveredRowLeft, setHoveredRowLeft] = useState(0);
+  const [hoveredTitle, setHoveredTitle] = useState<string | null>(null);
+  const [hoveredRowScale, setHoveredRowScale] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const hoverX = useSpring(0, { stiffness: 300, damping: 25 });
+  const hoverY = useSpring(0, { stiffness: 300, damping: 25 });
 
-  useEffect(() => {
-    async function fetchRecentlyPlayedTracks() {
-      try {
-        const response = await fetch('/api/recently-played');
-        if (!response.ok) {
-          throw new Error('Failed to fetch recently played tracks');
-        }
-        const data = await response.json();
-        setRecentlyPlayedTracks(data);
-      } catch (error) {
-        console.error('Error fetching recently played tracks:', error);
-      }
-    }
+  const handleHover = (el: HTMLDivElement, img: StaticImageData) => {
+    if (!containerRef.current || !listRef.current) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const listRect = listRef.current.getBoundingClientRect();
+    const rowRect = el.getBoundingClientRect();
+    setImageTop(rowRect.top - containerRect.top + rowRect.height / 2);
+    setHoveredRowTop(rowRect.top - listRect.top);
+    setHoveredRowLeft(rowRect.left - listRect.left);
+    setHoveredRowHeight(rowRect.height);
+    setHoveredRowWidth(rowRect.width);
+    setHoveredImage(img);
+    setHoveredTitle(img.src);
+  };
 
-    fetchRecentlyPlayedTracks();
-  }, []);
+  const handleLeave = () => {
+    hoverX.set(0);
+    hoverY.set(0);
+    setHoveredImage(null);
+    setHoveredTitle(null);
+    setHoveredRowScale(1);
+  };
+
+  const handleRowHoverStart = () => {
+    setHoveredRowScale(1.02);
+  };
+
+  const handleRowHoverEnd = () => {
+    setHoveredRowScale(1);
+  };
+
+  const handleRowPressStart = () => {
+    setHoveredRowScale(0.98);
+  };
+
+  const handleRowPressEnd = () => {
+    setHoveredRowScale(1.02);
+  };
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    hoverX.set((e.clientX - cx) * 0.05);
+    hoverY.set((e.clientY - cy) * 0.05);
+  };
+
+  const springY = useSpring(imageTop, { stiffness: 280, damping: 28 });
+  if (springY.get() !== imageTop) springY.set(imageTop);
 
   return (
-    <motion.section
-      className="p-0 max-w-screen-sm mx-auto"
-      variants={parentVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="flex sm:flex-row flex-col gap-4 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
-          About
-        </motion.p>
-
-      <motion.h1 className="text-sm w-full" variants={childVariants}>
-        {`I am an independent designer who loves to build clear and user-friendly products.`}
-        <br /> <br />
-        {`I started studying design in 2015, learning something new every day and then experimenting with it.`}
-        <br /> <br />
-        {`In 2019 I started my own business as an independent designer.`}
-        <br /> <br />
-        {`Over the years I have also enjoyed co-founding companies dealing with the creative side and front-end development.`}
-        <br /> <br />
-        {`I'm also obsessed with aligning every single pixel, but it's not really an obsession, it's just about getting the job done right.`}
-      </motion.h1>
+    <div ref={containerRef} className="relative flex flex-col items-center px-4 py-8 w-full">
+      {/* Bio Section */}
+      <div className="w-full max-w-[580px] mb-16 flex flex-col items-start gap-4 px-3">
+        <div className="mt-20 w-10 h-10 rounded-full overflow-hidden bg-neutral-200 dark:bg-neutral-700 flex-shrink-0">
+          <img 
+            src="/profilepic.png" 
+            alt="Axel Bergqvist" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <p className="text-[15px] text-[#999999]">
+          <span className="text-[15px] font-medium text-[#666666]">Axel Bergqvist</span> is a designer based in Atlanta building consumer products. His work hinges on restraint, reducing friction so interfaces feel more intuitive and obvious in hindsight. <a href="#" className="text-[15px] font-medium text-[#666666]">More</a>
+        </p>
       </div>
-        {/*
 
-      <div className="flex s sm:flex-row flex-col gap-4 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Experience
-        </motion.p>
-
-        <motion.div className="flex flex-col gap-4 w-full">
-          <ExperienceItem
-            role="Product Designer at Nordnet"
-            company="Nordnet"
-            date="2022 – Now"
-            imageSrc={Nordnet}
-          />
-          <ExperienceItem
-            role="UX Designer at Kumpan"
-            company="Kumpan"
-            date="2021"
-            imageSrc={Kumpan}
-          />
-          <ExperienceItem
-            role="UX & Graphic Designer at Freelance"
-            company="Freelance"
-            date="2016 – 2021"
-            imageSrc={Freelance}
-          />
-        </motion.div>
-      </div>
-        */}
-
-      <div className="flex sm:flex-row flex-col gap-4 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
-          What I like
-        </motion.p>
-        <motion.div className="flex flex-row gap-4 w-full">
-          <motion.div className="flex flex-col gap-4 w-full">
-            <motion.p className="text-sm" variants={childVariants}>Delightful interactions</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Typography</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Organized files</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Motion design</motion.p>
+      {/* List */}
+      <motion.section
+        ref={listRef}
+        className="relative w-full max-w-[580px] shrink-0"
+        variants={parentVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <AnimatePresence>
+          {hoveredImage && (
+            <motion.div
+                className="absolute left-0 bg-white pointer-events-none shadow-[0_8px_44px_rgba(0,0,0,0.05)]"
+                initial={{ opacity: 0, top: hoveredRowTop, height: hoveredRowHeight, width: hoveredRowWidth, x: 0, y: 0, scale: 1 }}
+                animate={{ opacity: 1, top: hoveredRowTop, height: hoveredRowHeight, width: hoveredRowWidth, scale: hoveredRowScale }}
+                exit={{ opacity: 0 }}
+                transition={{ type: 'spring', stiffness: 330, damping: 30, duration: 0.16 }}
+                style={{ top: hoveredRowTop, left: hoveredRowLeft, height: hoveredRowHeight, width: hoveredRowWidth, x: hoverX, y: hoverY, borderRadius: '24px', padding: '0px 48px', transformOrigin: 'left center' }}
+            />
+          )}
+        </AnimatePresence>
+        {archive.map((group) => (
+          <motion.div key={group.year} variants={childVariants} className="mb-8 grid grid-cols-[80px_minmax(0,1fr)] gap-8 items-start">
+            <div className="text-sm text-neutral-400 dark:text-neutral-500 pt-3">
+              {group.year}
+            </div>
+            <div className="space-y-4">
+              {group.projects.map((project) => (
+                <HoverRow
+                  key={project.title}
+                  project={project}
+                  onHover={handleHover}
+                  onLeave={handleLeave}
+                  onMove={handleMove}
+                  onHoverStart={handleRowHoverStart}
+                  onHoverEnd={handleRowHoverEnd}
+                  onPressStart={handleRowPressStart}
+                  onPressEnd={handleRowPressEnd}
+                  isHovered={hoveredTitle === project.image.src}
+                />
+              ))}
+            </div>
           </motion.div>
-          <motion.div className="flex flex-col gap-4 w-full">
-            <motion.p className="text-sm" variants={childVariants}>Data-driven design</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Clear communication</motion.p>
-            <motion.p className="text-sm" variants={childVariants}>Teamwork</motion.p>
-          </motion.div>
-        </motion.div>
+        ))}
+      </motion.section>
+
+      {/* Image — absolutely positioned slightly to the right */}
+      <div className="hidden md:block absolute left-[calc(50%+310px)] top-0">
+        <AnimatePresence mode="wait">
+          {hoveredImage && (
+            <motion.div
+              key={hoveredImage.src}
+              className="absolute"
+              style={{ top: springY, translateY: '-50%', width: Math.min(hoveredImage.width, 480) }}
+              initial={{ opacity: 0, filter: 'blur(6px)', scale: 0.96 }}
+              animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+              exit={{ opacity: 0, filter: 'blur(6px)', scale: 0.96 }}
+              transition={{ duration: 0.12, ease: 'easeOut' }}
+            >
+              <div className="rounded-xl overflow-hidden">
+                <Image src={hoveredImage} alt="" className="w-full h-auto" />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-
-      <div className="flex  sm:flex-row flex-col  gap-4 mb-20">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Recent tracks
-        </motion.p>
-
-        <motion.div variants={childVariants} className="flex flex-col gap-4 w-full">
-          <RecentlyPlayed tracks={recentlyPlayedTracks} />
-        </motion.div>
-      </div>
-
-      {/*
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 sm:w-3/12 w-full" variants={childVariants}>
-          Building
-        </motion.p>
-        <motion.div className="flex flex-col gap-4 w-full">
-          <ExperienceItem
-            role="Dissect"
-            company="Like Mobbin, but you get the Figma file"
-            date=""
-            imageSrc={Dissect}
-            link="https://nordnet.com" // Example link
-          />
-        </motion.div>
-      </div>
-      */}
-      
-      {/*
-      <div className="flex sm:flex-row flex-col sm:gap-20 gap-6 mb-24">
-        <motion.p className="text-sm text-neutral-500 dark:text-neutral-400 w-3/12" variants={childVariants}>
-          Education
-        </motion.p>
-
-        <motion.div className="flex flex-col gap-4 w-full">
-          <ExperienceItem
-            role="Berghs School of Communication"
-            company="UX & Digital Product Design"
-            date="2021"
-            imageSrc={Berghs}
-            link="https://nordnet.com" // Example link
-          />
-          <ExperienceItem
-            role="Brobygrafiska"
-            company="Digital Design"
-            date="2020 – 2022"
-            imageSrc={Brobygrafiska}
-            link="https://nordnet.com" // Example link
-          />
-        </motion.div>
-    
-      </div>
-           */}
-          </motion.section>
+    </div>
   );
 }
