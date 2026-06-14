@@ -7,7 +7,6 @@ import CustomZoomContent from '../../components/CustomZoomContent';
 import 'react-medium-image-zoom/dist/styles.css';
 import '../../custom-zoom.css';
 import CustomVideoPlayer from '../../components/CustomVideoPlayer';
-import image09 from '../../../public/09.png'; // Import the chosen image
 import Image from 'next/image';
 
 const parentVariants = {
