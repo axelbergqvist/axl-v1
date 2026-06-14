@@ -1,6 +1,6 @@
 // app/page.tsx or any other file where you use CustomVideoPlayer
 'use client';  // Add this line to mark the file as a Client Component
-
+/*
 import { motion } from 'framer-motion';
 import Zoom from 'react-medium-image-zoom';
 import CustomZoomContent from '../../components/CustomZoomContent';
@@ -75,7 +75,7 @@ export default function Page() {
           ))}
         </ul>
       </motion.div>
-*/}
+}
 
       <div className="flex flex-col mb-1 max-w-screen-sm mx-auto w-full">
         <motion.div className="text mb-4" variants={childVariants}>
