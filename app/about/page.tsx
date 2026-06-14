@@ -38,7 +38,7 @@ const archive: YearGroup[] = [
     year: '2025',
     projects: [
       { title: 'Nordnet', description: 'Product designer', href: '#', image: Nordnet },
-      { title: 'Kumpan', description: 'UX designer', href: '#', image: Kumpan },
+      { title: 'Sleep Cycle', description: 'Investor relations website', href: '#', image: Kumpan },
     ],
   },
   {
@@ -244,7 +244,8 @@ export default function Page() {
           />
         </div>
         <p className="text-[15px] text-[#999999]">
-          <span className="text-[15px] font-medium text-[#666666]">Axel Bergqvist</span> is a designer based in Atlanta building consumer products. His work hinges on restraint, reducing friction so interfaces feel more intuitive and obvious in hindsight. <a href="#" className="text-[15px] font-medium text-[#666666]">More</a>
+          <span className="text-[15px] font-medium text-[#666666]">Axel Bergqvist</span> is a designer based in Atlanta building consumer products. His work hinges on restraint, reducing friction so interfaces feel more intuitive and obvious in hindsight. <Link href="/about/bio" className="text-[15px] font-medium text-[#666666]">More</Link>
+
         </p>
       </div>
 
