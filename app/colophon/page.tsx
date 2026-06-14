@@ -6,8 +6,6 @@ import 'react-medium-image-zoom/dist/styles.css';
 import '../image-zoom.css';
 import '../custom-zoom.css';
 import useTheme from '../hooks/useTheme'; // Import the theme hook
-import WorktestLight from '/public/worktest3-light.png';
-import WorktestDark from '/public/worktest3-dark.png'; // Import the dark mode image
 
 const parentVariants = {
   hidden: { opacity: 0 },
