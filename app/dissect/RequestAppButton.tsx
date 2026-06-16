@@ -43,7 +43,7 @@ export default function RequestAppButton() {
           text-sm text-neutral-600 dark:text-neutral-300
         "
       >
-        Request App
+        Request App Yo
       </button>
 
       <AnimatePresence>
