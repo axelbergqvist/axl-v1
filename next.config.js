@@ -31,3 +31,19 @@ module.exports = {
     domains: ['i.scdn.co'], // Allow images from Spotify
   },
 };
+
+
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'logo.clearbit.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.simpleicons.org',
+      },
+    ],
+  },
+};

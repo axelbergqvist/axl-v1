@@ -97,6 +97,43 @@ function useSwoosh() {
   }, []);
 }
 
+function useChime() {
+  const ctx = useRef<AudioContext | null>(null);
+  return useCallback(() => {
+    if (typeof window === 'undefined') return;
+    if (!ctx.current) ctx.current = new AudioContext();
+    const ac = ctx.current;
+    const now = ac.currentTime;
+    const freqs = [523.25, 659.25, 783.99]; // C5, E5, G5
+
+    const masterGain = ac.createGain();
+    masterGain.gain.value = 0.05;
+    const lowpass = ac.createBiquadFilter();
+    lowpass.type = 'lowpass';
+    lowpass.frequency.value = 2200;
+    lowpass.Q.value = 0.4;
+    masterGain.connect(lowpass);
+    lowpass.connect(ac.destination);
+
+    freqs.forEach((freq, i) => {
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const start = now + i * 0.09;
+      const attack = 0.12;
+      const release = 0.9;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(1, start + attack);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + attack + release);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(start);
+      osc.stop(start + attack + release);
+    });
+  }, []);
+}
+
 const FAKE_SUMMARIES: Record<string, string> = {
   eaves: "Axel helped build and launch Beam, an AI infrastructure platform, during its Y Combinator W22 batch, contributing to a $3.5M seed round led by Tiger Global. The work shown reflects early design explorations for a reimagined version of the product and website.",
   bio: "Axel is a Bay Area–raised designer and creative technologist with over a decade of experience, currently co-founding Eaves while working as a Product Designer at Nordnet. His path from tinkering with hardware and pirated software as a kid led him through industrial design into product design, earning recognition including a Red Dot Award.",
@@ -112,6 +149,7 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
   const [showResult, setShowResult] = useState(false);
   const study = caseStudies[params.slug];
   const playSwoosh = useSwoosh();
+  const playChime = useChime();
 
   const close = () => {
     playSwoosh('close');
@@ -132,14 +170,20 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
   const summarize = async () => {
     if (summarizing) return;
 
-    // If we already have a summary, this click toggles the result view
     if (summary) {
-      setShowResult((prev) => !prev);
+      if (showResult) {
+        // "Done" pressed — reset back to initial state
+        setSummary('');
+        setShowResult(false);
+      } else {
+        setShowResult(true);
+      }
       return;
     }
 
     setSummarizing(true);
     setShowResult(true);
+    playChime();
     // simulate thinking time
     await new Promise((resolve) => setTimeout(resolve, 1200 + Math.random() * 800));
     setSummary(FAKE_SUMMARIES[params.slug] ?? 'No summary available.');
@@ -171,7 +215,7 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
 <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-3 w-[280px]">
   <AnimatePresence>
     {showResult && (summary || summarizing) && (
-      <motion.div layout initial={{ opacity: 0, y: 8, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8, scale: 0.95 }} transition={{ type: 'spring', stiffness: 400, damping: 28 }} className="max-w-[640px] px-6 py-4 rounded-3xl bg-black/35 backdrop-blur-xl text-white text-[15px] text-center">
+      <motion.div layout initial={{ opacity: 0, y: 8, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8, scale: 0.95 }} transition={{ type: 'spring', stiffness: 300, damping: 32 }} className="max-w-[640px] px-6 py-4 rounded-3xl bg-black/35 backdrop-blur-xl text-white text-[15px] text-center">
         {summarizing ? (
           <span className="opacity-60">Summarizing…</span>
         ) : summary}
@@ -179,12 +223,44 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
     )}
   </AnimatePresence>
 
-  <motion.div layout transition={{ type: 'spring', stiffness: 400, damping: 30 }} className="flex items-center justify-center gap-3">
-    <motion.button layout onClick={summarize} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.92 }} transition={{ type: 'spring', stiffness: 400, damping: 20 }} className="h-14 px-5 rounded-full bg-black/35 backdrop-blur-md flex items-center justify-center text-white text-sm gap-2 whitespace-nowrap" aria-label="Summarize">
-      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 1 7.107 9.993A9 9 0 1 1 3.8 9.155C5.007 5.6 8.29 3 12 3z" />
-      </svg>
-      {summary ? 'Done' : 'Summarize'}
+  <motion.div layout transition={{ type: 'spring', stiffness: 300, damping: 35 }} className="flex items-center justify-center gap-3">
+    <motion.button layout onClick={summarize} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }} transition={{ type: 'spring', stiffness: 300, damping: 25 }} className="h-14 px-5 rounded-full bg-black/35 backdrop-blur-md flex items-center justify-center text-white text-sm whitespace-nowrap" aria-label="Summarize">
+      <AnimatePresence mode="popLayout" initial={false}>
+        {!(summary && showResult) && (
+          <motion.svg
+            key="dots-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            initial={{ opacity: 0, scale: 0.5, width: 0, marginRight: 0 }}
+            animate={{ opacity: 1, scale: 1, width: 14, marginRight: 8 }}
+            exit={{ opacity: 0, scale: 0.5, width: 0, marginRight: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            style={{ flexShrink: 0 }}
+          >
+            <circle cx="6" cy="6" r="3" fill="currentColor" />
+            <circle cx="18" cy="6" r="3" fill="currentColor" />
+            <circle cx="6" cy="18" r="3" fill="currentColor" />
+            <circle cx="18" cy="18" r="3" fill="currentColor" />
+          </motion.svg>
+        )}
+      </AnimatePresence>
+
+      <span className="relative inline-grid">
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.span
+            key={summary ? (showResult ? 'done' : 'view') : 'summarize'}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
+            className="col-start-1 row-start-1"
+          >
+            {summary ? (showResult ? 'Done' : 'View summary') : 'Summarize'}
+          </motion.span>
+        </AnimatePresence>
+      </span>
     </motion.button>
 
     <AnimatePresence initial={false}>
@@ -196,9 +272,9 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
           initial={{ opacity: 0, scale: 0.5, width: 0, marginLeft: -12 }}
           animate={{ opacity: 1, scale: 1, width: 56, marginLeft: 0 }}
           exit={{ opacity: 0, scale: 0.5, width: 0, marginLeft: -12 }}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.92 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           className="h-14 rounded-full bg-black/35 backdrop-blur-md flex items-center justify-center text-white text-2xl overflow-hidden shrink-0"
           aria-label="Close"
         >
@@ -248,11 +324,11 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
                 )}
 
                 {study.experience && (
-                  <div className="w-full max-w-[640px] mt-12">
-                    <div className="text-[15px] text-[#999999] mb-1">Experience</div>
+                  <div className="w-full max-w-[640px] mt-8">
+                    <div className="text-[15px] text-[#999999] mb-2">Experience</div>
                     <div className="flex flex-col">
                       {study.experience.map((item, i) => (
-                        <div key={i} className="flex justify-between items-baseline py-3">
+                        <div key={i} className="flex justify-between items-baseline py-2">
                           <div className="flex items-baseline gap-2">
                             <span className="text-[15px] text-[#444444] dark:text-neutral-200">{item.role}</span>
                             <span className="text-[15px] text-[#999999]">{item.company}</span>
@@ -266,10 +342,10 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
 
                 {study.education && (
                   <div className="w-full max-w-[640px] mt-10">
-                    <div className="text-[15px] text-[#999999] mb-1">Education</div>
+                    <div className="text-[15px] text-[#999999] mb-2">Education</div>
                     <div className="flex flex-col">
                       {study.education.map((item, i) => (
-                        <div key={i} className="flex justify-between items-baseline py-3">
+                        <div key={i} className="flex justify-between items-baseline py-2">
                           <div className="flex items-baseline gap-2">
                             <span className="text-[15px] text-[#444444] dark:text-neutral-200">{item.degree}</span>
                             <span className="text-[15px] text-[#999999]">{item.school}</span>
@@ -286,7 +362,7 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
                     <div className="text-[15px] text-[#999999] mb-1">Awards</div>
                     <div className="flex flex-col">
                       {study.awards.map((item, i) => (
-                        <div key={i} className="flex justify-between items-baseline py-3">
+                        <div key={i} className="flex justify-between items-baseline py-2">
                           <div className="flex items-baseline gap-2">
                             <span className="text-[15px] text-[#444444] dark:text-neutral-200">{item.title}</span>
                             <span className="text-[15px] text-[#999999]">{item.body}</span>
@@ -299,8 +375,8 @@ export default function CaseStudyModal({ params }: { params: { slug: string } })
                 )}
 
                 {study.links && (
-                  <div className="w-full max-w-[640px] mt-10 mb-4">
-                    <div className="text-[15px] text-[#999999] mb-1">Links</div>
+                  <div className="w-full max-w-[640px] mt-10 mb-2">
+                    <div className="text-[15px] text-[#999999] mb-2">Links</div>
                     <div className="flex flex-col">
                       {study.links.map((link, i) => (
                         <a key={i} href={link.href} target="_blank" rel="noopener noreferrer" className="flex justify-between items-center py-3 group">

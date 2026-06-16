@@ -1,0 +1,11 @@
+{
+  "name": "Doji",
+  "description": "Doji is a fun new way to find style inspiration - create your Al likeness, try on looks, style your own from scratch and share your favorites.",
+  "figmaUrl": "https://figma.com/...",
+  "uploaded": "Jun 1, 2026",
+  "baseFont": 16,
+  "baseRadius": 24,
+  "resolution": "393x852",
+  "tags": ["Typography Scale", "Grid System", "Iconography Set", "Button Styles", "Form Components", "Navigation Patterns", "Color Contrast", "Interaction States"],
+  "colors": ["#f0f0f0", "#b4b4b4", "#96b4d2"]
+}
