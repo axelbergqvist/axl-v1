@@ -89,7 +89,7 @@ export default function DissectDetail({ app }: { app: AppEntry }) {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') router.push('/dissect');
+      if (e.key === 'Escape') router.push('/');
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -115,7 +115,7 @@ export default function DissectDetail({ app }: { app: AppEntry }) {
         onMouseLeave={() => setBackHovered(false)}
       >
         <Link
-          href="/dissect"
+          href="/"
           className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white backdrop-blur-2xl text-neutral-400 shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:text-neutral-600 transition-colors"
           aria-label="Back"
         >

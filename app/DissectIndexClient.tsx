@@ -90,7 +90,7 @@ export default function DissectIndexClient({
           return (
             <Link
               key={app.slug}
-              href={`/dissect/${app.slug}`}
+href={`/${app.slug}`}
               className="block"
               onMouseEnter={() => setHoveredSlug(app.slug)}
               onMouseLeave={() => setHoveredSlug(null)}
