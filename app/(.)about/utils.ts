@@ -50,7 +50,11 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-return getMDXData(path.join(process.cwd(), 'app', '(.)about', 'posts'))
+  const postsDir = path.join(process.cwd(), 'app', '(.)about', 'posts')
+  if (!fs.existsSync(postsDir)) {
+    return []
+  }
+  return getMDXData(postsDir)
 }
 
 export function formatDate(date: string, includeRelative = false) {
